@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 27
-  productGUID: d0b5697eca6222f44985d3c88feb50d5
+  productGUID: de81492665bd998428a4eb58b880fd67
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: project_debugging
+  productName: ffdfddd
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -730,14 +730,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: project_debugging
+  metroPackageName: ffdfddd
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: project_debugging
+  metroApplicationDescription: ffdfddd
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -807,10 +807,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: f7e34c87-9eb8-43aa-ba40-2018b2aaccd3
+  cloudProjectId: 31cb64b3-d693-4af7-8c6a-1d5a9897b04f
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: project_debugging
+  projectName: ffdfddd
   organizationId: woonjay04
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
