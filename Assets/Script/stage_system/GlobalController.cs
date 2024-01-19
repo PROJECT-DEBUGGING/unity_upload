@@ -33,9 +33,8 @@ public class NewBehaviourScript : MonoBehaviour
     void DeactivateAllFiles()
     {
         foreach (GameObject file in files)
-        {
             file.SetActive(false);
-        }
+        
     }
 
     // 전역 변수를 조정하는 함수
