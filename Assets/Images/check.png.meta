@@ -144,7 +144,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      "\uCCB4\uD06C\uD45C\uC2DC_0": 2932166001424328349
+      stage_choose_scene_0: 568221398418358803
+
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
