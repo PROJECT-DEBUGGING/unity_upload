@@ -4,10 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Debug_button
   - Moveable_Button
   - Fixed_Button
-  - Debug_button
-  - background
   layers:
   - Default
   - TransparentFX
@@ -18,8 +17,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
+  - none_move
+  - back
   - 
   - 
   - 

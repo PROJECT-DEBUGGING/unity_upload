@@ -1,50 +1,170 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public float moveSpeed = 0.5f;
-    public float pauseTime = 1f;
+    public float pauseTime = 1f;//화살표의 움직임 사이의 시간. 1초
+    public Boolean start = false;//디버그 버튼 눌릴 때 참이됨. 시작 여부
+    public Boolean Arrowgo = true;//while을 벗어나게 함
+    public Boolean IsClear = false;
+    public BlockTouchEvent NowBlock;//진행 시 자신 옆의 블록
+    public BlockTouchEvent InBlock;//만약 리피트, 이프 블록일 시 내부의 명령어 수행
+
+    private float MoveTime = 2f;
+    private Stack<int> ColorStack; // 스택
+    private int NowColor;
     void Start()
     {
+        ColorStack = new Stack<int>();
+        NowColor = 0;
         Transform whitearrow = transform.Find("arrow_white_0");
         Transform redarrow = transform.Find("arrow_red_0");
         Transform yellowarrow = transform.Find("arrow_yellow_0");
         Transform bluearrow = transform.Find("arrow_blue_0");
 
+        NowBlock = GameObject.Find("Start").GetComponent<BlockTouchEvent>();
+        
         // 찾은 하위 오브젝트의 활성화 여부 변경
         whitearrow.gameObject.SetActive(true); // 또는 false로 설정
         redarrow.gameObject.SetActive(false); // 또는 false로 설정
         yellowarrow.gameObject.SetActive(false); // 또는 false로 설정
-        bluearrow.gameObject.SetActive(false); // 또는 false로 설정
-
-        
+        bluearrow.gameObject.SetActive(false); // 또는 false로 설정       
     }
-
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// start moving arrow
+    /// </summary>
+    public void MoveObjects()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha0)){ Change(0); }
-        else if (Input.GetKeyDown(KeyCode.Alpha1)) { Change(1); }
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) { Change(2); }
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) { Change(3); }
-
-        //화살표 이동 명령어
-        InvokeRepeating("MoveObjects", 0f, moveSpeed + pauseTime);
+        int todo = (int) NowBlock.feature;//enum으로 주어진 블록의 특징 int로 변환
+        Debug.Log(todo);
+        DoBlock(todo);//doblock함수 사용해 블록의 특징에 따른 작업 수행
+        if(todo == 10) //repeat일때
+        {
+            InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
+            todo = (int)InBlock.feature;
+            for(int i = 0; i < 2; i++)
+            {
+                DoBlock(todo);
+            }
+        }//repeat끝
+        else if(todo == 11)//ifyellow일때
+        {
+            Debug.Log(NowColor);
+            if(NowColor == 2)
+            {
+                InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
+                todo = (int)InBlock.feature;
+                DoBlock(todo);
+            }           
+        }//ifyellow 끝
+        
+        NowBlock = GameObject.Find(NowBlock.nextblock.name).GetComponent<BlockTouchEvent>();//넘어가는 코드
+        Debug.Log(NowBlock);
+        if (NowBlock.name == "FinishBlock")
+        {
+            Arrowgo = false;
+        }
+        
+        Invoke("MoveDown", MoveTime);
+        MoveTime += 2f;
         
     }
-    void MoveObjects()
+
+    public void DoBlock(int feature)
+    {
+        if(feature == 0)
+        {
+            Debug.Log("Let's start!");
+        }
+        else if(feature == 1)
+        {
+            Debug.Log("Change Red!");
+            StackIn(NowColor);
+            NowColor = 1;
+            Change(1);
+            //빨간색 스택처리.
+        }
+        else if (feature == 2)
+        {
+            Debug.Log("Change Yellow!");
+            StackIn(NowColor);
+            NowColor = 2;
+            Change(2);
+            //노랑색 스택처리.
+        }
+        else if (feature == 3)
+        {
+            Debug.Log("Change Blue!");
+            StackIn(NowColor);
+            NowColor = 3;
+            Change(3);
+            //파란색 스택처리.
+        }
+        else if(feature == 6)
+        {
+            Debug.Log("Color Back!");
+            NowColor = StackOut();
+            Change(NowColor);
+        }
+        else if(feature == 10)
+        {
+            Debug.Log("Repeat!");
+            
+        }
+        else if(feature == 11)
+        {
+            Debug.Log("If Yellow?");
+            
+        }
+        else if( feature == 50)
+        {
+            Debug.Log("Clear!");
+            IsClear = true;
+        }
+        
+    }
+    public void MoveDown()
     {
         foreach (Transform child in transform)
         {
-            // 현재 위치에서 목표 위치까지 이동
-            Vector2 currentPosition = child.position;
-            Vector2 targetPosition = new Vector2(currentPosition.x, currentPosition.y - 0.5f);
-            child.position = Vector2.MoveTowards(currentPosition, targetPosition, moveSpeed * Time.deltaTime);
+            child.Translate(Vector2.down * 0.8f);
+        }
+        Debug.Log("wait..");
+    }
+    void Update()
+    {
+        if (start)
+        {
+            while(Arrowgo)
+            {
+                MoveObjects();
+            }
+            if(IsClear)
+            {
+                ResultScript resultScript = GameObject.FindObjectOfType<ResultScript>();
+                resultScript.result = 1;
+                Debug.Log("result is 1 in arrowscript");
+            }
+            else
+            {
+                ResultScript resultScript = GameObject.FindObjectOfType<ResultScript>();
+                resultScript.result = 2;
+                Debug.Log("result is 2 in arrowscript");
+            }
+            Debug.Log("over?");
+            start = false;
         }
     }
+
+    public void Starting()
+    {
+        start = true;
+    }
+
+    
     void Change(int color)//0 1 2 3 값따라 화살표 색 변경
     {
         Transform whitearrow = transform.Find("arrow_white_0");
@@ -79,5 +199,24 @@ public class ArrowScript : MonoBehaviour
             yellowarrow.gameObject.SetActive(false); // 또는 false로 설정
             bluearrow.gameObject.SetActive(true); // 또는 false로 설정
         }
-    } 
+    }
+    /// <summary>
+    /// 스택 변수. 0 하얀색 1 빨간색 2 노란색 3 파란색
+    /// </summary>
+    /// <param name="value"></param>
+    public void StackIn(int value)
+    {
+        ColorStack.Push(value);
+        Debug.Log(value + "color in");
+    }
+    public int StackOut()
+    {
+        int a = 0;
+        if(ColorStack.Count > 0)
+        {
+            a = ColorStack.Pop();
+            Debug.Log(a + "color out");
+        }
+        return a;
+    }
 }
