@@ -13,7 +13,7 @@ public class ArrowScript : MonoBehaviour
     public BlockTouchEvent NowBlock;//진행 시 자신 옆의 블록
     public BlockTouchEvent InBlock;//만약 리피트, 이프 블록일 시 내부의 명령어 수행
 
-    private float MoveTime = 2f;
+    public float MoveTime = 2f;
     private Stack<int> ColorStack; // 스택
     private int NowColor;
     void Start()
@@ -69,7 +69,7 @@ public class ArrowScript : MonoBehaviour
         }
         
         Invoke("MoveDown", MoveTime);
-        MoveTime += 2f;
+        MoveTime += 1f;
         
     }
 
@@ -84,7 +84,8 @@ public class ArrowScript : MonoBehaviour
             Debug.Log("Change Red!");
             StackIn(NowColor);
             NowColor = 1;
-            Change(1);
+            Invoke("ChangeRed", MoveTime);
+            MoveTime += 1f;
             //빨간색 스택처리.
         }
         else if (feature == 2)
@@ -92,7 +93,8 @@ public class ArrowScript : MonoBehaviour
             Debug.Log("Change Yellow!");
             StackIn(NowColor);
             NowColor = 2;
-            Change(2);
+            Invoke("ChangeYellow", MoveTime);
+            MoveTime += 1f;
             //노랑색 스택처리.
         }
         else if (feature == 3)
@@ -100,14 +102,31 @@ public class ArrowScript : MonoBehaviour
             Debug.Log("Change Blue!");
             StackIn(NowColor);
             NowColor = 3;
-            Change(3);
+            Invoke("ChangeBlue", MoveTime);
+            MoveTime += 1f;
             //파란색 스택처리.
         }
         else if(feature == 6)
         {
             Debug.Log("Color Back!");
             NowColor = StackOut();
-            Change(NowColor);
+            if (NowColor == 0)
+            {
+                Invoke("ChangeWhite", MoveTime);                
+            }
+            else if (NowColor == 1)
+            {
+                Invoke("ChangeRed", MoveTime);
+            }
+            else if (NowColor == 2)
+            {
+                Invoke("ChangeYellow", MoveTime);
+            }
+            else if(NowColor == 3)
+            {
+                Invoke("ChangeBlue", MoveTime);
+            } 
+            MoveTime += 1f;
         }
         else if(feature == 10)
         {
@@ -130,7 +149,7 @@ public class ArrowScript : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            child.Translate(Vector2.down * 0.8f);
+            child.Translate(Vector2.down);
         }
         Debug.Log("wait..");
     }
@@ -164,42 +183,58 @@ public class ArrowScript : MonoBehaviour
         start = true;
     }
 
-    
-    void Change(int color)//0 1 2 3 값따라 화살표 색 변경
+    void ChangeWhite()
     {
         Transform whitearrow = transform.Find("arrow_white_0");
         Transform redarrow = transform.Find("arrow_red_0");
         Transform yellowarrow = transform.Find("arrow_yellow_0");
         Transform bluearrow = transform.Find("arrow_blue_0");
-        if (color == 0)//white
-        {
-            whitearrow.gameObject.SetActive(true); // 또는 false로 설정
-            redarrow.gameObject.SetActive(false); // 또는 false로 설정
-            yellowarrow.gameObject.SetActive(false); // 또는 false로 설정
-            bluearrow.gameObject.SetActive(false); // 또는 false로 설정
-        }
-        else if (color == 1)//red
-        {
-            whitearrow.gameObject.SetActive(false); // 또는 false로 설정
-            redarrow.gameObject.SetActive(true); // 또는 false로 설정
-            yellowarrow.gameObject.SetActive(false); // 또는 false로 설정
-            bluearrow.gameObject.SetActive(false); // 또는 false로 설정
-        }
-        else if (color == 2)//yellow
-        {
-            whitearrow.gameObject.SetActive(false); // 또는 false로 설정
-            redarrow.gameObject.SetActive(false); // 또는 false로 설정
-            yellowarrow.gameObject.SetActive(true); // 또는 false로 설정
-            bluearrow.gameObject.SetActive(false); // 또는 false로 설정
-        }
-        else if (color == 3)//blue
-        {
-            whitearrow.gameObject.SetActive(false); // 또는 false로 설정
-            redarrow.gameObject.SetActive(false); // 또는 false로 설정
-            yellowarrow.gameObject.SetActive(false); // 또는 false로 설정
-            bluearrow.gameObject.SetActive(true); // 또는 false로 설정
-        }
+
+        whitearrow.gameObject.SetActive(true); // 또는 false로 설정
+        redarrow.gameObject.SetActive(false); // 또는 false로 설정
+        yellowarrow.gameObject.SetActive(false); // 또는 false로 설정
+        bluearrow.gameObject.SetActive(false); // 또는 false로 설정
     }
+
+    void ChangeRed()
+    {
+        Transform whitearrow = transform.Find("arrow_white_0");
+        Transform redarrow = transform.Find("arrow_red_0");
+        Transform yellowarrow = transform.Find("arrow_yellow_0");
+        Transform bluearrow = transform.Find("arrow_blue_0");
+
+        whitearrow.gameObject.SetActive(false); // 또는 false로 설정
+        redarrow.gameObject.SetActive(true); // 또는 false로 설정
+        yellowarrow.gameObject.SetActive(false); // 또는 false로 설정
+        bluearrow.gameObject.SetActive(false); // 또는 false로 설정
+    }
+
+    void ChangeYellow()
+    {
+        Transform whitearrow = transform.Find("arrow_white_0");
+        Transform redarrow = transform.Find("arrow_red_0");
+        Transform yellowarrow = transform.Find("arrow_yellow_0");
+        Transform bluearrow = transform.Find("arrow_blue_0");
+
+        whitearrow.gameObject.SetActive(false); // 또는 false로 설정
+        redarrow.gameObject.SetActive(false); // 또는 false로 설정
+        yellowarrow.gameObject.SetActive(true); // 또는 false로 설정
+        bluearrow.gameObject.SetActive(false); // 또는 false로 설정
+    }
+
+    void ChangeBlue()
+    {
+        Transform whitearrow = transform.Find("arrow_white_0");
+        Transform redarrow = transform.Find("arrow_red_0");
+        Transform yellowarrow = transform.Find("arrow_yellow_0");
+        Transform bluearrow = transform.Find("arrow_blue_0");
+
+        whitearrow.gameObject.SetActive(false); // 또는 false로 설정
+        redarrow.gameObject.SetActive(false); // 또는 false로 설정
+        yellowarrow.gameObject.SetActive(false); // 또는 false로 설정
+        bluearrow.gameObject.SetActive(true); // 또는 false로 설정
+    }
+    
     /// <summary>
     /// 스택 변수. 0 하얀색 1 빨간색 2 노란색 3 파란색
     /// </summary>

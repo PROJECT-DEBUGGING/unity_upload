@@ -5,22 +5,31 @@ using UnityEngine;
 public class ResultScript : MonoBehaviour
 {
     public int result = 0;
-
+    public float GetTime;
     // Update is called once per frame
     void Update()
     {
+
         if (result == 1)
         {
+            ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
+            GetTime = NowArrow.MoveTime;
             Debug.Log("result is 1 in resultscript");
-            Invoke("ClearPuzzle", 2f);
-            Invoke("HideClear", 4f);
+            GetTime += 2f;
+            Invoke("ClearPuzzle", GetTime);
+            GetTime += 2f;
+            Invoke("HideClear", GetTime);
             result = 0;
         }
         else if (result == 2)
         {
+            ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
+            GetTime = NowArrow.MoveTime;
             Debug.Log("result is 2 in resultscript");
-            Invoke("FailedPuzzle", 2f);
-            Invoke("HideFailed", 4f);
+            GetTime += 2f;
+            Invoke("FailedPuzzle", GetTime);
+            GetTime += 2f;
+            Invoke("HideFailed", GetTime);
             result = 0;
         }
     }
