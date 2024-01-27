@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
 using UnityEngine;
 
 public class ArrowScript : MonoBehaviour
@@ -43,9 +42,10 @@ public class ArrowScript : MonoBehaviour
         DoBlock(todo);//doblock함수 사용해 블록의 특징에 따른 작업 수행
         if(todo == 10) //repeat일때
         {
+            Debug.Log(NowBlock.RepeatCount);
             InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
             todo = (int)InBlock.feature;
-            for(int i = 0; i < 2; i++)
+            for(int i = 0; i < NowBlock.RepeatCount; i++)
             {
                 DoBlock(todo);
             }
@@ -60,6 +60,16 @@ public class ArrowScript : MonoBehaviour
                 DoBlock(todo);
             }           
         }//ifyellow 끝
+        else if(todo == 12)//ifwhite일때
+        {
+            Debug.Log(NowColor);
+            if (NowColor == 0)
+            {
+                InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
+                todo = (int)InBlock.feature;
+                DoBlock(todo);
+            }
+        }
         
         NowBlock = GameObject.Find(NowBlock.nextblock.name).GetComponent<BlockTouchEvent>();//넘어가는 코드
         Debug.Log(NowBlock);

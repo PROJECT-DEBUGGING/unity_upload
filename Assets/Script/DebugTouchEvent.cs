@@ -7,10 +7,19 @@ public class DebugTouchEvent : MonoBehaviour//DebugTouchEvent부분은 스크립트 이�
 {
     
     public void OnClickButton()
-    {
-        ArrowScript arsc = GameObject.FindObjectOfType<ArrowScript>();
+    {   
+        ResultScript resultScript = GameObject.FindObjectOfType<ResultScript>();
+        if (resultScript.CantDebug)
+        {
+            ArrowScript arsc = GameObject.FindObjectOfType<ArrowScript>();
+
+            arsc.Starting();
+        }
+        else
+        {
+            Debug.Log("defend success");
+        }
         
-        arsc.Starting();
         
     }
 }

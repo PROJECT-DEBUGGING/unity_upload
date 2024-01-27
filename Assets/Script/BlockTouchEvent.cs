@@ -11,6 +11,7 @@ public class BlockTouchEvent : MonoBehaviour
     public enum BlockFeature
     {
         Start = 0, ChangeRed = 1, ChangeYellow = 2, ChangeBlue = 3, End = 50, Back = 6, Repeat = 10, IfYellow = 11
+            , IfWhite = 12
             , finish = 99
     }
     public enum Moveable
@@ -20,6 +21,7 @@ public class BlockTouchEvent : MonoBehaviour
     public Moveable moveable;
     public BlockFeature feature;
     public Vector2 NowLocation;
+    public int RepeatCount;
     // Update is called once per frame
     private void Start()
     {

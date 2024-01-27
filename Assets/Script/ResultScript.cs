@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,12 +7,14 @@ public class ResultScript : MonoBehaviour
 {
     public int result = 0;
     public float GetTime;
+    public Boolean CantDebug = true;
     // Update is called once per frame
     void Update()
     {
 
         if (result == 1)
         {
+            CantDebug = false;
             ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
             GetTime = NowArrow.MoveTime;
             Debug.Log("result is 1 in resultscript");
@@ -19,10 +22,12 @@ public class ResultScript : MonoBehaviour
             Invoke("ClearPuzzle", GetTime);
             GetTime += 2f;
             Invoke("HideClear", GetTime);
+            Invoke("CanDebug", GetTime);
             result = 0;
         }
         else if (result == 2)
         {
+            CantDebug = false;
             ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
             GetTime = NowArrow.MoveTime;
             Debug.Log("result is 2 in resultscript");
@@ -30,8 +35,13 @@ public class ResultScript : MonoBehaviour
             Invoke("FailedPuzzle", GetTime);
             GetTime += 2f;
             Invoke("HideFailed", GetTime);
+            Invoke("CanDebug", GetTime);
             result = 0;
         }
+    }
+    public void CanDebug()
+    {
+        CantDebug = true;
     }
     public void ClearPuzzle()
     {
