@@ -10,8 +10,8 @@ public class BlockTouchEvent : MonoBehaviour
     public GameObject childblock;
     public enum BlockFeature
     {
-        Start = 0, ChangeRed = 1, ChangeYellow = 2, ChangeBlue = 3, End = 50, Back = 6, Repeat = 10, IfYellow = 11
-            , IfWhite = 12
+        Start = 0, ChangeRed = 1, ChangeYellow = 2, ChangeBlue = 3, End = 50, Back = 6, Remove = 7, Repeat = 10, 
+        IfYellow = 11, IfWhite = 12, IfRed = 13
             , finish = 99
     }
     public enum Moveable
