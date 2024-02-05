@@ -377,8 +377,8 @@ MonoBehaviour:
   mainsystemscript: {fileID: 0}
   nextblock: {fileID: 0}
   childblock: {fileID: 0}
-  moveable: 1
-  feature: 6
+  moveable: 0
+  feature: 0
   NowLocation: {x: 0, y: 0}
   RepeatCount: 0
 --- !u!1 &135610287
@@ -682,7 +682,7 @@ MonoBehaviour:
   nextblock: {fileID: 1698313403}
   childblock: {fileID: 0}
   moveable: 0
-  feature: 1
+  feature: 0
   NowLocation: {x: 0, y: 0}
   RepeatCount: 0
 --- !u!1 &258820066
@@ -710,7 +710,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 258820066}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -9719.716}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 108, y: 108, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -722,7 +722,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -250, y: 450}
+  m_AnchoredPosition: {x: -270, y: 450}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &258820068
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   nextblock: {fileID: 182614452}
   childblock: {fileID: 0}
   moveable: 0
-  feature: 3
+  feature: 0
   NowLocation: {x: 0, y: 0}
   RepeatCount: 0
 --- !u!1 &665638757
@@ -2471,8 +2471,8 @@ MonoBehaviour:
   mainsystemscript: {fileID: 0}
   nextblock: {fileID: 1819840002}
   childblock: {fileID: 59463124}
-  moveable: 1
-  feature: 10
+  moveable: 0
+  feature: 0
   NowLocation: {x: 0, y: 0}
   RepeatCount: 2
 --- !u!1 &1698313403
@@ -2624,7 +2624,7 @@ MonoBehaviour:
   nextblock: {fileID: 1661044446}
   childblock: {fileID: 0}
   moveable: 0
-  feature: 2
+  feature: 0
   NowLocation: {x: 0, y: 0}
   RepeatCount: 0
 --- !u!1 &1740588743

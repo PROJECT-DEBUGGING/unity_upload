@@ -94,6 +94,16 @@ public class ArrowScript : MonoBehaviour
                 DoBlock(todo);
             }
         }
+        else if (todo == 14)//ifBlue일때
+        {
+            Debug.Log(NowColor);
+            if (NowColor == 3)
+            {
+                InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
+                todo = (int)InBlock.feature;
+                DoBlock(todo);
+            }
+        }
 
 
         NowBlock = GameObject.Find(NowBlock.nextblock.name).GetComponent<BlockTouchEvent>();//넘어가는 코드
