@@ -34,8 +34,24 @@ public class BTN : MonoBehaviour
                     Application.Quit();
                 #endif
                 break;
-            
+
+
+            case BTNType.Return:
+                // 현재 씬에 따라 다른 씬으로 이동
+                string currentScene = SceneManager.GetActiveScene().name;
+                switch (currentScene)
+                {
+                    case "Stage_Selection_Scene":
+                        SceneManager.LoadScene("Title_Scene");
+                        break;
+                   // case "Scene2":
+                    //    SceneManager.LoadScene("ReturnScene2");
+                      //  break;
+                        // 다른 씬들에 대한 처리도 추가 가능
+                }
+                break;
         }
+
     }
 }
 
