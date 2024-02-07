@@ -1,4 +1,4 @@
-﻿title: Day1_Start
+title: Day1_Start
 tags:
 ---
 나: …드디어 사무실 서버를 구축했다.
@@ -8,8 +8,7 @@ tags:
 나: 그래야 월세랑 수도세를 내지….
 나: 우선 첫 번째 손님을 받아보자.
 \{\#!@\#^$%^님이 입장하셨습니다.\}
-<<script StartFadeInNPCImage()>>
+<<run DialogueRunner.StartFadeInNPCImage(day1_npc)>>
 \#!@\#^$%^
 …@\#$…&^&*)($…1!
-
 ===
