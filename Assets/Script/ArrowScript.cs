@@ -52,8 +52,6 @@ public class ArrowScript : MonoBehaviour
         int todo = (int) NowBlock.feature;//enum으로 주어진 블록의 특징 int로 변환
         Debug.Log(todo);
         DoBlock(todo);//doblock함수 사용해 블록의 특징에 따른 작업 수행
-        
-        
         if(todo == 10) //repeat일때
         {
             Debug.Log(NowBlock.RepeatCount);
@@ -73,7 +71,7 @@ public class ArrowScript : MonoBehaviour
                 todo = (int)InBlock.feature;
                 DoBlock(todo);
             }           
-        }//ifyellow 끝
+        }
         else if(todo == 12)//ifwhite일때
         {
             Debug.Log(NowColor);
@@ -104,7 +102,6 @@ public class ArrowScript : MonoBehaviour
                 DoBlock(todo);
             }
         }
-
 
         NowBlock = GameObject.Find(NowBlock.nextblock.name).GetComponent<BlockTouchEvent>();//넘어가는 코드
         Debug.Log(NowBlock);
@@ -207,17 +204,14 @@ public class ArrowScript : MonoBehaviour
         {
             Debug.Log("Clear!");
             IsClear = true;
-        }
-        
+        }       
     }
     public void MoveDown()
     {
         RectTransform rectTransform = BlockQueue.Dequeue();
         Vector2 NowBlockPosition = rectTransform.position;
         Vector2 ArrowVector = new Vector2(NowBlockPosition.x - 2.5f, NowBlockPosition.y);
-
         Arrowrect.position = ArrowVector;
-        Debug.Log("wait..");
     }
     void Update()
     {
@@ -230,17 +224,28 @@ public class ArrowScript : MonoBehaviour
             if(IsClear)
             {
                 ResultScript resultScript = GameObject.FindObjectOfType<ResultScript>();
-                resultScript.result = 1;
+                resultScript.result = 1;//1이 클리어
                 Debug.Log("result is 1 in arrowscript");
+                
             }
             else
             {
                 ResultScript resultScript = GameObject.FindObjectOfType<ResultScript>();
-                resultScript.result = 2;
+                resultScript.result = 2;//2가 실패
+                
                 Debug.Log("result is 2 in arrowscript");
+                NowBlock = GameObject.Find("Start").GetComponent<BlockTouchEvent>();
+                Blockrect = NowBlock.GetComponent<RectTransform>();
+                BlockQueue.Enqueue(Blockrect);
+                Invoke("MoveDown", MoveTime);
+                NowColor = StackAllOut();
+                Invoke("ChangeWhite", MoveTime);
+                
+                MoveTime += 1f;
             }
+            Arrowgo = true;
             Debug.Log("over?");
-            start = false;
+            start = false;           
         }
     }
 

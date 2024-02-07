@@ -377,8 +377,8 @@ MonoBehaviour:
   mainsystemscript: {fileID: 0}
   nextblock: {fileID: 0}
   childblock: {fileID: 0}
-  moveable: 0
-  feature: 0
+  moveable: 1
+  feature: 6
   NowLocation: {x: 0, y: 0}
   RepeatCount: 0
 --- !u!1 &135610287
@@ -682,7 +682,7 @@ MonoBehaviour:
   nextblock: {fileID: 1698313403}
   childblock: {fileID: 0}
   moveable: 0
-  feature: 0
+  feature: 1
   NowLocation: {x: 0, y: 0}
   RepeatCount: 0
 --- !u!1 &258820066
@@ -1055,7 +1055,7 @@ MonoBehaviour:
   nextblock: {fileID: 182614452}
   childblock: {fileID: 0}
   moveable: 0
-  feature: 0
+  feature: 3
   NowLocation: {x: 0, y: 0}
   RepeatCount: 0
 --- !u!1 &665638757
@@ -2471,8 +2471,8 @@ MonoBehaviour:
   mainsystemscript: {fileID: 0}
   nextblock: {fileID: 1819840002}
   childblock: {fileID: 59463124}
-  moveable: 0
-  feature: 0
+  moveable: 1
+  feature: 10
   NowLocation: {x: 0, y: 0}
   RepeatCount: 2
 --- !u!1 &1698313403
@@ -2624,7 +2624,7 @@ MonoBehaviour:
   nextblock: {fileID: 1661044446}
   childblock: {fileID: 0}
   moveable: 0
-  feature: 0
+  feature: 2
   NowLocation: {x: 0, y: 0}
   RepeatCount: 0
 --- !u!1 &1740588743
