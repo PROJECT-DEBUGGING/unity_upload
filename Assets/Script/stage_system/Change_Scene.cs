@@ -54,16 +54,3 @@ public class BTN : MonoBehaviour
 
     }
 }
-
-public class YourClickHandlerScript : MonoBehaviour { 
-
-    void Start()
-    {
-
-    }
-    void Update()
-    {
-       
-    }
-
-}
