@@ -21,31 +21,9 @@ public class NPC_Image : MonoBehaviour
 
 
     [YarnCommand("StartFadeInNPCImage")]
-    public void StartFadeInNPCImage(string UIName)
+    public void StartFadeInNPCImage(Image ImageName)
     {
-        Image targetImage = FindImage(UIName);
-        if (targetImage != null)
-        {
-            // 페이드 인 애니메이션 시작
-            StartCoroutine(FadeInImage(targetImage));
-        }
-        else
-        {
-            Debug.LogError("Image not found!");
-        }
-    }
-
-    Image FindImage(string UIName)
-    {
-        // UIName과 일치하는 Image 찾기
-        foreach (Image uiImage in uiImages)
-        {
-            if (uiImage.name == UIName)
-            {
-                return uiImage;
-            }
-        }
-        return null;
+        StartCoroutine(FadeInImage(ImageName));
     }
 
     IEnumerator FadeInImage(Image targetImage)
@@ -65,18 +43,9 @@ public class NPC_Image : MonoBehaviour
     }
 
     [YarnCommand("StartFadeOutNPCImage")]
-    public void StartFadeOutNPCImage(string UIName)
+    public void StartFadeOutNPCImage(Image ImageName)
     {
-        Image targetImage = FindImage(UIName);
-        if (targetImage != null)
-        {
-            // 이미지 페이드 아웃 애니메이션 시작
-            StartCoroutine(FadeOutImage(targetImage));
-        }
-        else
-        {
-            Debug.LogError("Image not found!");
-        }
+         StartCoroutine(FadeOutImage(ImageName));
     }
 
     IEnumerator FadeOutImage(Image targetImage)
