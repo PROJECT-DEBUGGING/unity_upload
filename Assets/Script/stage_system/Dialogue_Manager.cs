@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Yarn.Unity;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class NPC_Image : MonoBehaviour
 {
@@ -62,5 +63,12 @@ public class NPC_Image : MonoBehaviour
 
             yield return null;
         }
+    }
+
+
+    [YarnCommand("ChangeScene")]
+    public void ChangeScene(string  SceneName)
+    {
+        SceneManager.LoadScene(SceneName);
     }
 }
