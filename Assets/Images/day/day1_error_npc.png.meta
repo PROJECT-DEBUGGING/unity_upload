@@ -3,11 +3,11 @@ guid: b2b6fb04528519941a054923c36fd38b
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6173482681099361438
-    second: day1_error_npc 1_0
+      213: -4587603438042559113
+    second: day1_error_npc_0
   - first:
-      213: 5322536873092698238
-    second: day1_error_npc 1_1
+      213: 151775674951815350
+    second: day1_error_npc_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: day1_error_npc 1_0
+      name: day1_error_npc_0
       rect:
         serializedVersion: 2
         x: 214
@@ -117,14 +117,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e9c14f93acd9ca550800000000000000
-      internalID: 6173482681099361438
+      spriteID: 77dcc11bafe8550c0800000000000000
+      internalID: -4587603438042559113
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: day1_error_npc 1_1
+      name: day1_error_npc_1
       rect:
         serializedVersion: 2
         x: 232
@@ -138,8 +138,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e70db9806137dd940800000000000000
-      internalID: 5322536873092698238
+      spriteID: 6b05c071c273b1200800000000000000
+      internalID: 151775674951815350
       vertices: []
       indices: 
       edges: []
@@ -154,9 +154,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      day1_error_npc 1_0: 6173482681099361438
-      day1_error_npc 1_1: 5322536873092698238
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

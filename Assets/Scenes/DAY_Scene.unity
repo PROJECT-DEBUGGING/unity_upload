@@ -214,6 +214,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 998893611}
+  - {fileID: 1152109522}
   - {fileID: 1897314974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -525,6 +526,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998893610}
   m_CullTransparentMesh: 1
+--- !u!1 &1152109519
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1152109522}
+  - component: {fileID: 1152109521}
+  - component: {fileID: 1152109520}
+  m_Layer: 5
+  m_Name: day1_error_npc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1152109520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152109519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 151775674951815350, guid: b2b6fb04528519941a054923c36fd38b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1152109521
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152109519}
+  m_CullTransparentMesh: 1
+--- !u!224 &1152109522
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1152109519}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 579324824}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 60, y: 180.51}
+  m_SizeDelta: {x: 535.9861, y: 658.7224}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1543412605
 GameObject:
   m_ObjectHideFlags: 0
@@ -672,6 +748,7 @@ GameObject:
   - component: {fileID: 1550956265}
   - component: {fileID: 1550956264}
   - component: {fileID: 1550956266}
+  - component: {fileID: 1550956267}
   m_Layer: 0
   m_Name: DialogueRunner
   m_TagString: Untagged
@@ -744,6 +821,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showDebug: 0
   debugTextView: {fileID: 0}
+--- !u!114 &1550956267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550956263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d54f79b14887d5c4dbb16d8a58b019dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiImages:
+  - {fileID: 1152109520}
 --- !u!1 &1869559094
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +916,6 @@ GameObject:
   - component: {fileID: 1897314975}
   - component: {fileID: 1897314978}
   - component: {fileID: 1897314977}
-  - component: {fileID: 1897314980}
   m_Layer: 5
   m_Name: dialogue_box
   m_TagString: Untagged
@@ -935,47 +1025,11 @@ MonoBehaviour:
   onPauseEnded:
     m_PersistentCalls:
       m_Calls: []
-  typewriterEffectSpeed: 20
+  typewriterEffectSpeed: 30
   continueButton: {fileID: 1992776705}
   holdTime: 1.5
-  autoAdvance: 1
+  autoAdvance: 0
   palette: {fileID: 0}
---- !u!114 &1897314980
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1897314973}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bec29c0a230741bdac901dba8da47ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yarnProject: {fileID: 7545569452688597077, guid: 7c86e126567b2b54db8b492bb9f29c24, type: 3}
-  _variableStorage: {fileID: 1550956266}
-  dialogueViews:
-  - {fileID: 1897314978}
-  startNode: Start
-  startAutomatically: 1
-  runSelectedOptionAsLine: 0
-  lineProvider: {fileID: 0}
-  verboseLogging: 1
-  onNodeStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onNodeComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onDialogueStart:
-    m_PersistentCalls:
-      m_Calls: []
-  onDialogueComplete:
-    m_PersistentCalls:
-      m_Calls: []
-  onCommand:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1992776705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1041,7 +1095,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1897314978}
         m_TargetAssemblyTypeName: Yarn.Unity.LineView, YarnSpinner.Unity
-        m_MethodName: OnContinueClicked
+        m_MethodName: UserRequestedViewAdvancement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
