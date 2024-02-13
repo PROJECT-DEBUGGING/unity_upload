@@ -18,6 +18,7 @@ public class ResultScript : MonoBehaviour
             Debug.Log("result is 1 in resultscript");
             
             Invoke("ClearPuzzle", GetTime);
+            Invoke("ClearSound", GetTime);
             GetTime += 2f;
             Invoke("HideClear", GetTime);
             Invoke("CanDebug", GetTime);
@@ -29,8 +30,9 @@ public class ResultScript : MonoBehaviour
             ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
             GetTime = NowArrow.MoveTime;
             Debug.Log("result is 2 in resultscript");
-            
+
             Invoke("FailedPuzzle", GetTime);
+            Invoke("FailedSound", GetTime);
             GetTime += 2f;
             Invoke("HideFailed", GetTime);
             Invoke("CanDebug", GetTime);
@@ -49,7 +51,12 @@ public class ResultScript : MonoBehaviour
         Transform ClearScreen = transform.Find("clear_0");
         ClearScreen.gameObject.SetActive(true);
     }
-
+    public void ClearSound()
+    {
+        GameObject clear = GameObject.Find("clear_0");
+        AudioSource clearsound = clear.GetComponent<AudioSource>();
+        clearsound.Play();
+    }
     public void HideClear()
     {
         Transform ClearScreen = transform.Find("clear_0");
@@ -59,13 +66,16 @@ public class ResultScript : MonoBehaviour
     {
         Transform FailScreen = transform.Find("failed_0");
         FailScreen.gameObject.SetActive(true);
-        Debug.Log("fail!");
     }
-
+    public void FailedSound()
+    {
+        GameObject failed = GameObject.Find("failed_0");
+        AudioSource failedsound = failed.GetComponent<AudioSource>();
+        failedsound.Play();
+    }
     public void HideFailed()
     {
         Transform FailScreen = transform.Find("failed_0");
-        FailScreen.gameObject.SetActive(false); 
-        Debug.Log("fail cut");
+        FailScreen.gameObject.SetActive(false);
     }
 }

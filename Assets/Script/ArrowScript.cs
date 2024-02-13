@@ -57,7 +57,11 @@ public class ArrowScript : MonoBehaviour
             Debug.Log(NowBlock.RepeatCount);
             InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
             todo = (int)InBlock.feature;
-            for(int i = 0; i < NowBlock.RepeatCount; i++)
+            Blockrect = InBlock.GetComponent<RectTransform>();
+            BlockQueue.Enqueue(Blockrect);
+            Invoke("MoveDown", MoveTime);
+            MoveTime += 1f;
+            for (int i = 0; i < NowBlock.RepeatCount; i++)
             {
                 DoBlock(todo);
             }
@@ -69,6 +73,10 @@ public class ArrowScript : MonoBehaviour
             {
                 InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
                 todo = (int)InBlock.feature;
+                Blockrect = InBlock.GetComponent<RectTransform>();
+                BlockQueue.Enqueue(Blockrect);
+                Invoke("MoveDown", MoveTime);
+                MoveTime += 1f;
                 DoBlock(todo);
             }           
         }
@@ -79,6 +87,10 @@ public class ArrowScript : MonoBehaviour
             {
                 InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
                 todo = (int)InBlock.feature;
+                Blockrect = InBlock.GetComponent<RectTransform>();
+                BlockQueue.Enqueue(Blockrect);
+                Invoke("MoveDown", MoveTime);
+                MoveTime += 1f;
                 DoBlock(todo);
             }
         }
@@ -89,6 +101,10 @@ public class ArrowScript : MonoBehaviour
             {
                 InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
                 todo = (int)InBlock.feature;
+                Blockrect = InBlock.GetComponent<RectTransform>();
+                BlockQueue.Enqueue(Blockrect);
+                Invoke("MoveDown", MoveTime);
+                MoveTime += 1f;
                 DoBlock(todo);
             }
         }
@@ -99,6 +115,10 @@ public class ArrowScript : MonoBehaviour
             {
                 InBlock = GameObject.Find(NowBlock.childblock.name).GetComponent<BlockTouchEvent>();
                 todo = (int)InBlock.feature;
+                Blockrect = InBlock.GetComponent<RectTransform>();
+                BlockQueue.Enqueue(Blockrect);
+                Invoke("MoveDown", MoveTime);
+                MoveTime += 1f;
                 DoBlock(todo);
             }
         }
@@ -112,9 +132,11 @@ public class ArrowScript : MonoBehaviour
         {
             Arrowgo = false;
         }
-        
-        Invoke("MoveDown", MoveTime);
-        MoveTime += 1f;
+        if(Arrowgo)
+        {
+            Invoke("MoveDown", MoveTime);
+            MoveTime += 1f;
+        }
         
     }
 
@@ -208,6 +230,8 @@ public class ArrowScript : MonoBehaviour
     }
     public void MoveDown()
     {
+        AudioSource ArrowSound = GetComponent<AudioSource>();
+        ArrowSound.Play();
         RectTransform rectTransform = BlockQueue.Dequeue();
         Vector2 NowBlockPosition = rectTransform.position;
         Vector2 ArrowVector = new Vector2(NowBlockPosition.x - 2.5f, NowBlockPosition.y);
@@ -234,21 +258,30 @@ public class ArrowScript : MonoBehaviour
                 resultScript.result = 2;//2°¡ ½ÇÆÐ
                 
                 Debug.Log("result is 2 in arrowscript");
-                NowBlock = GameObject.Find("Start").GetComponent<BlockTouchEvent>();
-                Blockrect = NowBlock.GetComponent<RectTransform>();
-                BlockQueue.Enqueue(Blockrect);
-                Invoke("MoveDown", MoveTime);
+                
+                Invoke("GoStart", MoveTime);
                 NowColor = StackAllOut();
                 Invoke("ChangeWhite", MoveTime);
                 
-                MoveTime += 1f;
+                
             }
             Arrowgo = true;
             Debug.Log("over?");
             start = false;           
         }
     }
-
+    public void GoStart()
+    {
+        while(BlockQueue.Count > 0)
+        {
+            BlockQueue.Dequeue();
+        }
+        NowBlock = GameObject.Find("Start").GetComponent<BlockTouchEvent>();
+        Blockrect = NowBlock.GetComponent<RectTransform>();
+        Vector2 NowBlockPosition = Blockrect.position;
+        Vector2 ArrowVector = new Vector2(NowBlockPosition.x - 2.5f, NowBlockPosition.y);
+        Arrowrect.position = ArrowVector;
+    }
     public void Starting()
     {
         start = true;

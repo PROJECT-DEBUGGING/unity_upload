@@ -11,6 +11,8 @@ public class DebugTouchEvent : MonoBehaviour//DebugTouchEvent부분은 스크립트 이�
         ResultScript resultScript = GameObject.FindObjectOfType<ResultScript>();
         if (resultScript.CantDebug)
         {
+            AudioSource DebugAudio = GetComponent<AudioSource>();
+            DebugAudio.Play();
             ArrowScript arsc = GameObject.FindObjectOfType<ArrowScript>();
 
             arsc.Starting();

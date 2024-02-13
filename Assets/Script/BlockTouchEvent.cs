@@ -37,6 +37,8 @@ public class BlockTouchEvent : MonoBehaviour
     public void SelectButton()
     {
         Debug.Log(gameObject.name);
+        AudioSource BlockAudio = GetComponent<AudioSource>();
+        BlockAudio.Play();
         if(moveable == Moveable.unable)
         {
             Debug.Log("움직일 수 없습니다");
