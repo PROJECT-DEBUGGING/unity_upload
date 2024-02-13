@@ -66,9 +66,10 @@ public class NPC_Image : MonoBehaviour
     }
 
 
+
     [YarnCommand("ChangeScene")]
-    public void ChangeScene(string  SceneName)
+    public void ChangeScene(string sceneName)
     {
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(sceneName);
     }
 }

@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Puzzle_Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/DAY_Scene.unity
+    path: Assets/Scenes/Day_Folder/DAY1_Scene.unity
     guid: 94a738b354c7c9d4a875355955e4214e
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
