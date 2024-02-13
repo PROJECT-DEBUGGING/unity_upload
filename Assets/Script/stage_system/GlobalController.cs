@@ -5,7 +5,7 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     private static NewBehaviourScript instance;
-
+  
     // 클리어된 파일 개수
     private int clearedFileCount = 0;
 
@@ -80,4 +80,6 @@ public class NewBehaviourScript : MonoBehaviour
         clearedFileCount = Mathf.Clamp(count, 0, files.Length);
         UpdateFileActivation();
     }
+
+ 
 }
