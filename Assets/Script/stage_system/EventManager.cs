@@ -1,38 +1,58 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Yarn.Unity;
 
 public class EventManager : MonoBehaviour
 {
+    public AudioSource defaultAudioSource; // 기본적으로 사용할 음향
+    public List<CharacterSoundEntry> characterSounds = new List<CharacterSoundEntry>(); // 각 캐릭터에 대한 음향 목록
 
-    public AudioClip clickSound; // 클릭 시 재생할 음향
-    private AudioSource audioSource;
+    // Yarn Spinner의 DialogueRunner 컴포넌트
+    private DialogueRunner dialogueRunner;
 
-    private void Awake()
+    [System.Serializable]
+    public class CharacterSoundEntry
     {
-        // 오디오 소스 컴포넌트 가져오기
-        audioSource = GetComponent<AudioSource>();
+        public string characterName; // 캐릭터 이름
+        public AudioClip characterSound; // 해당 캐릭터의 음향
     }
 
-    // 마우스 클릭 시 호출할 함수
-    public void OnClick()
+   private void SetCharacterName(string[] parameters, System.Action onComplete)
     {
-        // 클릭 사운드 재생
-        PlayClickSound();
-    }
-
-    // 클릭 사운드 재생 함수
-    private void PlayClickSound()
-    {
-        // 음향이 설정되어 있으면 재생
-        if (clickSound != null && audioSource != null)
+        if (parameters.Length >= 1)
         {
-            audioSource.PlayOneShot(clickSound);
+            string characterName = parameters[0];
+
+            // 현재 대화의 캐릭터 이름에 해당하는 음향을 찾아 재생
+            PlayCharacterSoundForCurrentDialogue(characterName);
+        }
+
+        // onComplete을 호출하여 Yarn Spinner에게 해당 명령이 완료되었음을 알립니다.
+        onComplete();
+    }
+
+    private void PlayCharacterSoundForCurrentDialogue(string characterName)
+    {
+        // 현재 대화의 캐릭터 이름에 해당하는 음향을 찾아 재생
+        CharacterSoundEntry characterSoundEntry = GetCharacterSoundEntry(characterName);
+
+        if (characterSoundEntry != null)
+        {
+            PlayCharacterSound(characterSoundEntry.characterSound);
+        }
+    
+    }
+    private CharacterSoundEntry GetCharacterSoundEntry(string characterName)
+    {
+        return characterSounds.Find(entry => entry.characterName == characterName);
+    }
+
+    private void PlayCharacterSound(AudioClip sound)
+    {
+        if (sound != null)
+        {
+            defaultAudioSource.PlayOneShot(sound);
         }
     }
-
-
-
-
 
 }
