@@ -459,6 +459,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6dd11f87785effc42b6a12d1e7030e5f, type: 3}
     volume: 0.3
     isLoop: 1
+  - sceneName: Day_Scene
+    clip: {fileID: 8300000, guid: 9669960e415ea604d81fb0784634df79, type: 3}
+    volume: 0.3
+    isLoop: 1
 --- !u!4 &766044194
 Transform:
   m_ObjectHideFlags: 0

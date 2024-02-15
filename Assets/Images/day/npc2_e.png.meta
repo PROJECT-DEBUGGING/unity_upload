@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 77a3c837fe460ba41ba8235babd9cfb0
+guid: cca67aa7afe5acb4087bc0657e052280
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6477818978545502124
-    second: day2_error_npc_0
+      213: -39602347681365950
+    second: npc3 2_0
   - first:
-      213: -2367729700593838370
-    second: day2_error_npc_1
+      213: 6375918465162237685
+    second: npc3 2_1
   - first:
-      213: -3992714900331376611
-    second: day2_error_npc_2
+      213: 1345493990402037407
+    second: npc3 2_2
   - first:
-      213: -7607541415047907496
-    second: day2_error_npc_3
+      213: 147462963651331693
+    second: npc3 2_3
   - first:
-      213: -2230464925518305169
-    second: day2_error_npc_4
+      213: -7846865685425559097
+    second: npc3 2_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,106 +112,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: day2_error_npc_0
+      name: npc3 2_0
       rect:
         serializedVersion: 2
-        x: 43
-        y: 382
-        width: 47
-        height: 38
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 13
+        y: 434
+        width: 19
+        height: 10
+      alignment: 9
+      pivot: {x: -0.084612794, y: 3.7793946}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 458f280c5f92a16a0800000000000000
-      internalID: -6477818978545502124
+      spriteID: 2404e26efdd437ff0800000000000000
+      internalID: -39602347681365950
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: day2_error_npc_1
-      rect:
-        serializedVersion: 2
-        x: 143
-        y: 294
-        width: 266
-        height: 163
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ed656ffc162242fd0800000000000000
-      internalID: -2367729700593838370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: day2_error_npc_2
+      name: npc3 2_1
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 466
-        height: 324
+        y: 437
+        width: 43
+        height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d10d654d3f60798c0800000000000000
-      internalID: -3992714900331376611
+      spriteID: 5f659d02010db7850800000000000000
+      internalID: 6375918465162237685
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: day2_error_npc_3
+      name: npc3 2_2
       rect:
         serializedVersion: 2
-        x: 126
-        y: 323
+        x: 1
+        y: 0
+        width: 466
+        height: 457
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f961651d7a72ca210800000000000000
+      internalID: 1345493990402037407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc3 2_3
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 422
         width: 31
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8573ff5b3659c6690800000000000000
-      internalID: -7607541415047907496
+      spriteID: d66c6fdb8c4eb0200800000000000000
+      internalID: 147462963651331693
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: day2_error_npc_4
+      name: npc3 2_4
       rect:
         serializedVersion: 2
-        x: 130
-        y: 320
+        x: 2
+        y: 420
         width: 33
         height: 37
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f68638eb7fbcb01e0800000000000000
-      internalID: -2230464925518305169
+      spriteID: 7c9e10ccb355a1390800000000000000
+      internalID: -7846865685425559097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: npc2_e_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 436
+        width: 26
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0c7eda9dc2940b479f500a963946d49
+      internalID: -766357861
       vertices: []
       indices: 
       edges: []
@@ -219,7 +240,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 1a89c501037841d45b6858e190a35f77
     internalID: 0
     vertices: []
     indices: 
@@ -227,11 +248,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      day2_error_npc_0: -6477818978545502124
-      day2_error_npc_1: -2367729700593838370
-      day2_error_npc_2: -3992714900331376611
-      day2_error_npc_3: -7607541415047907496
-      day2_error_npc_4: -2230464925518305169
+      npc2_e_0: -766357861
+      npc3 2_0: -39602347681365950
+      npc3 2_1: 6375918465162237685
+      npc3 2_2: 1345493990402037407
+      npc3 2_3: 147462963651331693
+      npc3 2_4: -7846865685425559097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
