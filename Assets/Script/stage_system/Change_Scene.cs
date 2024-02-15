@@ -19,6 +19,7 @@ public enum BTNType
 public class BTN : MonoBehaviour
 {
     public BTNType currentType;
+   
 
     public void OnBtnClick()
     {
@@ -33,6 +34,13 @@ public class BTN : MonoBehaviour
                 #else
                     Application.Quit();
                 #endif
+                break;
+            case BTNType.File1:
+            case BTNType.File2:
+            case BTNType.File3:
+            case BTNType.File4:
+                Debug.Log("clicked");
+                SceneManager.LoadScene("Day_Scene");
                 break;
 
 
@@ -53,4 +61,8 @@ public class BTN : MonoBehaviour
         }
 
     }
+
+  
+
+
 }

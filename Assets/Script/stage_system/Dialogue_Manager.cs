@@ -72,4 +72,13 @@ public class NPC_Image : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+
+
+
+
+    [YarnCommand("GetDayNum")]
+    public static void GetDayNumber()
+    {
+        
+    }
 }
