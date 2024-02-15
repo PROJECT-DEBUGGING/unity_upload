@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using Yarn.Unity;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System.Security.Cryptography;
 
 public class NPC_Image : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class NPC_Image : MonoBehaviour
         {
             Color newColor = uiImage.color;
             newColor.a = 0f; // ≈ı∏Ì
+            uiImage.raycastTarget = false;
+
             uiImage.color = newColor;
         }
     }
@@ -65,6 +68,34 @@ public class NPC_Image : MonoBehaviour
         }
     }
 
+    [YarnCommand("ImageOff")]
+    public void ImgOff(Image ImageName)
+    {
+        StartCoroutine(OFFImage(ImageName));
+    }
+    IEnumerator OFFImage(Image targetImage)
+    {
+        Color newColor = targetImage.color;
+        newColor.a = 0f; 
+        targetImage.raycastTarget = false;
+        targetImage.color = newColor;
+
+        yield return null;
+    }
+
+    [YarnCommand("ImageOn")]
+    public void ImgOn(Image ImageName)
+    {
+        StartCoroutine(ONImage(ImageName));
+    }
+    IEnumerator ONImage(Image targetImage)
+    {
+        Color newColor = targetImage.color;
+        newColor.a = 1f;
+        targetImage.color = newColor;
+
+        yield return null;
+    }
 
 
     [YarnCommand("ChangeScene")]
@@ -74,11 +105,18 @@ public class NPC_Image : MonoBehaviour
     }
 
 
+    //[YarnCommand("GetDayNum")]
+    //public static int GetDayNumber()
+    //{
+    //    int dayNumber = 0;
+    //    // Parse the dayFlags and perform necessary logic
+    //    bool day1 = bool.Parse(dayFlags[0]);
+    //    bool day2 = bool.Parse(dayFlags[1]);
+    //    bool day3 = bool.Parse(dayFlags[2]);
+    //    bool day4 = bool.Parse(dayFlags[3]);
 
+    //    // Your logic here to calculate the day number
 
-    [YarnCommand("GetDayNum")]
-    public static void GetDayNumber()
-    {
-        
-    }
+    //    return dayNumber; // Return the calculated day number
+    //}
 }

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d4f2af5a70b33b144a798cebac9da687
+guid: 1dff3ae88112f0847afb88053ce921db
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1082059513977053677
-    second: KakaoTalk_20240207_134057028_0
+      213: 3482749493754959657
+    second: day 1 png full_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KakaoTalk_20240207_134057028_0
+      name: day 1 png full_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 208
         y: 0
-        width: 959
-        height: 1204
+        width: 2051
+        height: 2976
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -127,8 +114,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 31ed093ea90cbf0f0800000000000000
-      internalID: -1082059513977053677
+      spriteID: 9279fe05636355030800000000000000
+      internalID: 3482749493754959657
       vertices: []
       indices: 
       edges: []
@@ -144,7 +131,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      KakaoTalk_20240207_134057028_0: -1082059513977053677
+      day 1 png full_0: 3482749493754959657
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
