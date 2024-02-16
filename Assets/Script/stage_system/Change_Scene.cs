@@ -31,18 +31,30 @@ public class BTN : MonoBehaviour
                 SoundManager.instance.PlaySE(GetComponent<Button>());
                 SceneManager.LoadScene("Stage_Selection_Scene");
                 break;
+
             case BTNType.End:
                 SoundManager.instance.PlaySE(GetComponent<Button>());
-                #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-                #else
-                    Application.Quit();
-                #endif
+                Debug.Log("게임종료");
+                Application.Quit();
+           
                 break;
             case BTNType.File1:
+                GlobalController.ChangeSelectedNum(0);
+                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SceneManager.LoadScene("Day_Scene");
+                break;
             case BTNType.File2:
+                GlobalController.ChangeSelectedNum(1);
+                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SceneManager.LoadScene("Day_Scene");
+                break;
             case BTNType.File3:
+                GlobalController.ChangeSelectedNum(2);
+                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SceneManager.LoadScene("Day_Scene");
+                break;
             case BTNType.File4:
+                GlobalController.ChangeSelectedNum(3);
                 SoundManager.instance.PlaySE(GetComponent<Button>());
                 SceneManager.LoadScene("Day_Scene");
                 break;

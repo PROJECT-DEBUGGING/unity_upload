@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ResultScript : MonoBehaviour
 {
+    public int PuzzleNo;
     public int result = 0;
     public float GetTime;
     public Boolean CantDebug = true;
@@ -16,13 +17,15 @@ public class ResultScript : MonoBehaviour
             ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
             GetTime = NowArrow.MoveTime;
             Debug.Log("result is 1 in resultscript");
-            
+
             Invoke("ClearPuzzle", GetTime);
             Invoke("ClearSound", GetTime);
             GetTime += 2f;
             Invoke("HideClear", GetTime);
             Invoke("CanDebug", GetTime);
             result = 0;
+
+            GlobalController.Instance.SetFileClearStatus(PuzzleNo, true);
         }
         else if (result == 2)//½ÇÆÐ
         {
@@ -37,6 +40,8 @@ public class ResultScript : MonoBehaviour
             Invoke("HideFailed", GetTime);
             Invoke("CanDebug", GetTime);
             result = 0;
+
+            GlobalController.Instance.SetFileClearStatus(PuzzleNo, false);
         }
         GetTime = 0;
         ArrowScript arr = GameObject.FindObjectOfType<ArrowScript>();

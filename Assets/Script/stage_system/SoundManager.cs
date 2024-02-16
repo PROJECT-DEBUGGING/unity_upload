@@ -40,7 +40,7 @@ public class SoundManager : MonoBehaviour
     public static SoundManager instance;
     public BgmSound[] bgmInfo = null;
     public SESound[] seInfo = null;
-    private List<AudioSource> sePlayers;
+    public List<AudioSource> sePlayers;
 
     private AudioSource bgmPlayer;
     private int currentBGMIndex;
@@ -109,7 +109,7 @@ public class SoundManager : MonoBehaviour
 
         if (!foundBGM && bgmPlayer.isPlaying)
         {
-            // 일치하는 씬 BGM을 찾지 못하고 현재 BGM이 재생 중인 경우, 멈춥니다.
+            // 일치하는 씬 BGM을 찾지 못하고 현재 BGM이 재생 중인 경우, 멈춤
             bgmPlayer.Stop();
         }
     }
@@ -127,13 +127,16 @@ public class SoundManager : MonoBehaviour
         // buttonName에 해당하는 SE를 찾아서 재생
         for (int i = 0; i < seInfo.Length; i++)
         {
-            if (button == seInfo[i].button)
+            if (i < sePlayers.Count)
             {
                 sePlayers[i].clip = seInfo[i].clip;
                 sePlayers[i].volume = seInfo[i].volume;
                 sePlayers[i].loop = seInfo[i].isLoop;
-                sePlayers[i].Play();
-                break;
+                sePlayers[i].Play(); 
+            }
+            else
+            {
+                Debug.LogError("sePlayers list is not properly initialized. Ensure that the sizes of seInfo and sePlayers match.");
             }
         }
     }
