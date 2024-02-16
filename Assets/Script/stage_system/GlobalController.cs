@@ -2,38 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class GlobalController : MonoBehaviour
 {
-    private static NewBehaviourScript instance;
+    private static GlobalController instance;
 
-    // 클리어된 파일 개수
-    private int clearedFileCount = 0;
+    // 클리어된 파일 여부 배열
+    static bool[] isClear = new bool[4];
 
     // 파일 게임 오브젝트 저장 배열
-    public GameObject[] files;
+    public GameObject[] puzzles;
 
     // 싱글톤 인스턴스 가져오기
     [System.Obsolete]
-    public static NewBehaviourScript Instance
+    public static GlobalController Instance
     {
         get
         {
             if (instance == null)
             {
                 // 씬에 이미 존재하는지 확인
-                instance = FindObjectOfType<NewBehaviourScript>();
+                instance = FindObjectOfType<GlobalController>();
 
                 if (instance == null)
                 {
                     // 없으면 새로 생성
                     GameObject singletonObject = new GameObject("NewBehaviourScriptSingleton");
-                    instance = singletonObject.AddComponent<NewBehaviourScript>();
+                    instance = singletonObject.AddComponent<GlobalController>();
                 }
             }
 
             return instance;
         }
     }
+
     void Awake()
     {
         // 다른 스크립트에서 싱글톤을 참조할 수 있도록 설정
@@ -46,38 +47,72 @@ public class NewBehaviourScript : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
-
 
     void Start()
     {
-        SetClearedFileCount();
+        // Start에서 초기화
+        for (int i = 0; i < isClear.Length; i++)
+        {
+            CanvasGroup canvasGroup = puzzles[i].GetComponent<CanvasGroup>();
+
+            isClear[i] = false;
+            canvasGroup.alpha = 0f;
+            canvasGroup.interactable = false;
+        }
+
+        UpdateFileActivation();
     }
 
     // Update is called once per frame
     void Update()
     {
-    
+
     }
 
     void UpdateFileActivation()
     {
-        for (int i = 0; i < files.Length; i++)
+        for (int i = 0; i < puzzles.Length; i++)
         {
-            CanvasGroup canvasGroup = files[i].GetComponent<CanvasGroup>();
+            Debug.Log(i);
+            CanvasGroup canvasGroup = puzzles[i].GetComponent<CanvasGroup>();
             if (canvasGroup == null)
-                canvasGroup = files[i].AddComponent<CanvasGroup>();
+                canvasGroup = puzzles[i].AddComponent<CanvasGroup>();
 
-            // 현재까지 클리어한 파일의 개수만큼 활성화
-            canvasGroup.alpha = (i <= clearedFileCount) ? 1f : 0f;
-            canvasGroup.interactable = canvasGroup.blocksRaycasts = (i <= clearedFileCount);
+            // 현재까지 클리어한 파일의 개수만큼 또는 isClear 배열이 true인 경우에만 활성화
+            canvasGroup.alpha = (isClear[i]) ? 1f : 0f;
+            canvasGroup.interactable = canvasGroup.blocksRaycasts = isClear[i];
+
+            // 추가: alpha가 0f이고 그 전 파일이 클리어된 경우에 대한 처리
+            if (canvasGroup.alpha == 0f)
+            {
+                canvasGroup.alpha = 1f;
+                canvasGroup.interactable = canvasGroup.blocksRaycasts = true;
+                break; // break를 사용하여 루프를 종료하도록 수정
+            }
         }
     }
 
-    // 클리어된 파일 개수 조정
-    public void SetClearedFileCount(int count = 0)
+
+
+    // 파일의 클리어 여부 설정
+    public void SetFileClearStatus(int fileIndex, bool isFileCleared)
     {
-        clearedFileCount = Mathf.Clamp(count, 0, files.Length);
-        UpdateFileActivation();
+        if (fileIndex >= 0 && fileIndex < isClear.Length)
+        {
+            isClear[fileIndex] = isFileCleared;
+            UpdateFileActivation();
+        }
+        else
+        {
+            Debug.LogError("Invalid fileIndex: " + fileIndex);
+        }
+        for(int i = 0; i < 4; i++)
+        {
+            
+            Debug.Log(i+1 + " Puzzle is " + isClear[i]);
+        }
     }
+
 }
