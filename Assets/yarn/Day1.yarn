@@ -1,3 +1,34 @@
+title: Start
+tags:
+---
+<<if GetDayNum() == 0>>
+    <<if (CheckBeforePuzzle() == true)>>
+        <<jump Day1_Start>>
+    <<else>>
+        <<jump Day1_Clear>>
+    <<endif>>
+<<elseif GetDayNum() == 1>>
+    <<if (CheckBeforePuzzle() == true)>>
+        <<jump Day2_Start>>
+    <<else>>
+        <<jump Day2_Clear>>
+    <<endif>>
+<<elseif GetDayNum() == 2>>
+    <<if (CheckBeforePuzzle() == true)>>
+        <<jump Day3_Start>>
+    <<else>>
+        <<jump Day3_Clear>>
+    <<endif>>
+<<elseif GetDayNum() == 3>>
+    <<if (CheckBeforePuzzle() == true)>>
+        <<jump Day4_Start>>
+    <<else>>
+        <<jump Day4_Clear>>
+    <<endif>>
+<<else>>
+    <<ChangeScene Stage_Selection_Scene>>
+<<endif>>
+===
 title: Day1_Start
 tags:
 ---
@@ -13,12 +44,14 @@ tags:
 ?: …@\#$…&^&*)($…!
 나: (아예 외관에 오류가 생겼어… 그리고 음성 출력도 문제가 심하네.)
 나: (얼른 고쳐드려야겠어, 코드를 열어보자.)
-<<ImageOff day1_error_npc>>
+<<ImageOff DialogueRunner day1_error_npc>>
+<<ChangeState DialogueRunner false>>
+<<ChangeScene DialogueRunner Day1_Puzzle_Scene>>
 ===
 title: Day1_Clear
 tags:
 ---
-<<ImageOn day1_npc>>
+<<ImageOn DialogueRunner day1_npc>>
 노아: 그러니까 여기 옷이고 대사고 전부…!
 노아: …아, 이제 들리는 거야?
 나: 네, 이제 괜찮을 거예요.
@@ -28,9 +61,10 @@ tags:
 나: 그럼 다른 사람들도…
 노아: 네, 저랑 비슷할 거에요.
 나: 알겠습니다. 의뢰비는 제 프로필에 적힌 계좌로 보내주세요.
-<<StartFadeOutNPCImage day1_npc>>
+<<StartFadeOutNPCImage DialogueRunner day1_npc>>
 나: 앞으로 일감이 많이 들어오겠는걸
 나: 그렇지만 다수를 대상으로 한 버그라니… 그냥 질 나쁜 장난이면 좋겠네.
+<<ChangeState DialogueRunner true>>
 ===
 title: Day2_Start
 tags:
@@ -42,17 +76,18 @@ tags:
 나: 그래도 아직 한가한 걸 보니 큰일은 아니었나봐.
 나: 다음 손님을 받아보자, 오늘도 돈을 벌어야지.
 \{%\#@\#\#$%@@님이 입장하셨습니다.\}
-<<StartFadeInNPCImage day2_errror_npc>>
+<<StartFadeInNPCImage DialogueRunner day2_errror_npc>>
 ?: ^$%^!@\#\#$%$%^%….
 ?: @\#$@\#$\#$%%^
 나: (어제와 비슷한 손님이야, 이분도 캔디 클럽에 갔던 걸까?)
 나: (…코드를 열어서 버그를 해결하자.)
-<<ImageOff day2_errror_npc>>
+<<ImageOff DialogueRunner day2_errror_npc>>
+<<ChangeState DialogueRunner false>>
 ===
 title: Day2_Clear
 tags:
 ---
-<<ImageOn day2_npc>>
+<<ImageOn DialogueRunner day2_npc>>
 삑뺚뾲쀾뼊: …
 삑뺚뾲쀾뼊: 어, 해결됐어요?
 나: 네, 해결됐습니다.
@@ -68,7 +103,8 @@ tags:
 나: 어제 비슷한 버그를 해결해서요. 그 채널과 연관이 있는 것 같습니다.
 나: 주변에 비슷한 버그를 발견하셨다면 제 사무실로 연락주세요.
 삑삑: 네진짜감사합니다좋은하루되시고번창하세요!!
-<<StartFadeOutNPCImage day2_npc>>
+<<StartFadeOutNPCImage DialogueRunner day2_npc>>
+<<ChangeState DialogueRunner true>>
 ===
 title: Day3_Start
 tags:
@@ -81,17 +117,18 @@ tags:
 나: 괜찮을 거야!! 보안 강화한다고 내 퇴직금도 쏟아부었다고!
 나: ………….(다시 등골이 오싹해진다.)
 나: …손님이나 받자…
-<<StartFadeInNPCImage day3_error_npc>>
+<<StartFadeInNPCImage DialogueRunner day3_error_npc>>
 ?: ^&*(\#$%
 ?: !@\#$\#^*^…..|678(&*^&…
 나: (역시 같은 버그…)
 나: (어서 빨리 해결하자.)
-<<ImageOff day3_error_npc>>
+<<ImageOff DialogueRunner vday3_error_npc>>
+<<ChangeState DialogueRunner false>>
 ===
 title: Day3_Clear
 tags:
 ---
-<<ImageOn day3_npc>>
+<<ImageOn DialogueRunner day3_npc>>
 시카: ……………
 나: …손님?
 시카: 아!! 네!! 죄송해요 뭐라고 하셨죠?
@@ -107,10 +144,11 @@ tags:
 시카: 네! 전 평소에 알파 채널만 다녔는데….정말이에요! 오메가 채널엔 발도 들여본 적 없어요!!
 나: …….
 나: …알겠습니다. 또 문제가 생기면 찾아주세요.
-<<StartFadeOutNPCImage day3_npc>>
+<<StartFadeOutNPCImage DialogueRunner day3_npc>>
 나: 접속을 안 했는데 버그에 걸렸다고?
 나: 그럼 혹시 나도…
 나: …망했네.
+<<ChangeState DialogueRunner true>>
 ===
 title: Day4_Start
 tags:
@@ -126,14 +164,16 @@ SYSTEM: [삭제 중…]
 SYSTEM: [….]
 SYSTME: [오류가 발생했습니다. 데이터를 삭제할 수 없습니다.]
 나: 뭐???
-<<StartFadeInNPCImage day4_error>>
+<<StartFadeInNPCImage DialogueRunner vday4_error>>
 나: 악!!!!!!
 나: 아 제발 진짜 나한테 왜 이러는 거야!!
 나: 코드… 빨리 열어서 고쳐야해!!
+<<ChangeState DialogueRunner false>>
 ===
 title: Day4_Clear
 tags:
 ---
-<<ImageOff day4_error>>
+<<ImageOff DialogueRunner day4_error>>
 SYSTEM: [서버 관리자가 퇴장했습니다. 서버를 삭제합니다.]
+<<ChangeState DialogueRunner true>>
 ===

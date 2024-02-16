@@ -8,6 +8,8 @@ public class GlobalController : MonoBehaviour
 
     // 클리어된 파일 여부 배열
     public static bool[] isClear = new bool[4];
+    public static bool beforepuzzle = true;
+    public static int SelectedNum = 0;
 
     // 파일 게임 오브젝트 저장 배열
     
@@ -56,16 +58,12 @@ public class GlobalController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
 
     }
 
   
-
-
-
     // 파일의 클리어 여부 설정
     public void SetFileClearStatus(int fileIndex, bool isFileCleared)
     {
@@ -77,6 +75,16 @@ public class GlobalController : MonoBehaviour
         {
             Debug.LogError("Invalid fileIndex: " + fileIndex);
         }
+    }
+
+    public void CheckInGame(bool state)
+    {
+        beforepuzzle = state;
+    }
+
+    public static void ChangeSelectedNum(int num)
+    {
+        SelectedNum = num;
     }
 
 }

@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using System.Security.Cryptography;
 
-public class NPC_Image : MonoBehaviour
+public class Dialogue_Manager : MonoBehaviour
 {
     public Image[] uiImages;
 
@@ -105,18 +105,23 @@ public class NPC_Image : MonoBehaviour
     }
 
 
-    //[YarnCommand("GetDayNum")]
-    //public static int GetDayNumber()
-    //{
-    //    int dayNumber = 0;
-    //    // Parse the dayFlags and perform necessary logic
-    //    bool day1 = bool.Parse(dayFlags[0]);
-    //    bool day2 = bool.Parse(dayFlags[1]);
-    //    bool day3 = bool.Parse(dayFlags[2]);
-    //    bool day4 = bool.Parse(dayFlags[3]);
+    [YarnFunction("GetDayNum")]
+    public static int GetDayNumber()
+    {
+        return GlobalController.SelectedNum;
 
-    //    // Your logic here to calculate the day number
+    }
+    
 
-    //    return dayNumber; // Return the calculated day number
-    //}
+    [YarnFunction("CheckBeforePuzzle")]
+    public static bool Checkbfpuzzle()
+    {
+        return GlobalController.beforepuzzle;
+    }
+
+    [YarnCommand("ChangeState")]
+    public void changestate(bool value)
+    {
+        GlobalController.beforepuzzle = value;
+    }
 }
