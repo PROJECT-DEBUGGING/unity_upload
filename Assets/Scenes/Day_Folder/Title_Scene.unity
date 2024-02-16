@@ -449,20 +449,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecfdf354b6470594aa04a3ff2ce7f51e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmPlayer: {fileID: 1884261996}
   bgmInfo:
-  - sceneName: Title_Scene
-    clip: {fileID: 8300000, guid: 6dd11f87785effc42b6a12d1e7030e5f, type: 3}
+  - clip: {fileID: 8300000, guid: 6dd11f87785effc42b6a12d1e7030e5f, type: 3}
     volume: 0.3
     isLoop: 1
-  - sceneName: Stage_Selection_Scene
-    clip: {fileID: 8300000, guid: 6dd11f87785effc42b6a12d1e7030e5f, type: 3}
+    sceneName: Title_Scene
+  - clip: {fileID: 8300000, guid: 6dd11f87785effc42b6a12d1e7030e5f, type: 3}
     volume: 0.3
     isLoop: 1
-  - sceneName: Day_Scene
-    clip: {fileID: 8300000, guid: 9669960e415ea604d81fb0784634df79, type: 3}
+    sceneName: Stage_Selection_Scene
+  - clip: {fileID: 8300000, guid: 9669960e415ea604d81fb0784634df79, type: 3}
     volume: 0.3
     isLoop: 1
+    sceneName: Day_Scene
+  seInfo:
+  - clip: {fileID: 8300000, guid: e07575866904a5d4d91e91576f32219c, type: 3}
+    volume: 0.5
+    isLoop: 0
+    button: {fileID: 1630049140}
+  - clip: {fileID: 8300000, guid: c5ff5419700a09648bc7568df35a2565, type: 3}
+    volume: 0.5
+    isLoop: 0
+    button: {fileID: 2039922026}
+  - clip: {fileID: 8300000, guid: c5ff5419700a09648bc7568df35a2565, type: 3}
+    volume: 0.5
+    isLoop: 0
+    button: {fileID: 2039922026}
 --- !u!4 &766044194
 Transform:
   m_ObjectHideFlags: 0
@@ -663,6 +675,7 @@ GameObject:
   - component: {fileID: 1630049141}
   - component: {fileID: 1630049140}
   - component: {fileID: 1630049143}
+  - component: {fileID: 1630049144}
   m_Layer: 5
   m_Name: Button_start
   m_TagString: Untagged
@@ -745,18 +758,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 713062037}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1630049141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +809,103 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentType: 0
+--- !u!82 &1630049144
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630049138}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: e07575866904a5d4d91e91576f32219c, type: 3}
+  m_Resource: {fileID: 8300000, guid: e07575866904a5d4d91e91576f32219c, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1667492875
 GameObject:
   m_ObjectHideFlags: 0
@@ -1149,9 +1247,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2039922029}
-        m_TargetAssemblyTypeName: BTN, Assembly-CSharp
-        m_MethodName: OnBtnClick
+      - m_Target: {fileID: 1667492876}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1161,9 +1259,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1667492876}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
+      - m_Target: {fileID: 2039922029}
+        m_TargetAssemblyTypeName: BTN, Assembly-CSharp
+        m_MethodName: OnBtnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,22 +1,49 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-[System.Serializable]
+using UnityEngine.UI;
 public class Sound
 {
-    public string sceneName;
     public AudioClip clip;
     public float volume;
     public bool isLoop;
 }
 
+[System.Serializable]
+public class BgmSound : Sound
+{
+    public string sceneName; // BGM에는 sceneName이 필요
+    public BgmSound(string sceneName, AudioClip clip, float volume, bool isLoop)
+    {
+        this.sceneName = sceneName;
+        this.clip = clip;
+        this.volume = volume;
+        this.isLoop = isLoop;
+    }
+}
+
+[System.Serializable]
+public class SESound : Sound
+{
+    public Button button; // SE에는 Button이 필요
+    public SESound(Button button, AudioClip clip, float volume, bool isLoop)
+    {
+        this.button = button;
+        this.clip = clip;
+        this.volume = volume;
+        this.isLoop = isLoop;
+    }
+}
+
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
-    public AudioSource bgmPlayer = null;
-    public Sound[] bgmInfo = null;
+    public BgmSound[] bgmInfo = null;
+    public SESound[] seInfo = null;
+    private List<AudioSource> sePlayers;
+
+    private AudioSource bgmPlayer;
     private int currentBGMIndex;
-    private float defaultVolume = 1.0f;
 
     private void Awake()
     {
@@ -30,14 +57,25 @@ public class SoundManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        bgmPlayer = gameObject.AddComponent<AudioSource>();
+
         PlayBGM(SceneManager.GetActiveScene().name);
         SceneManager.sceneLoaded += OnSceneLoaded; // 씬 로딩이 완료될 때마다 이벤트 핸들러 호출
+        sePlayers = new List<AudioSource>();
+        for (int i = 0; i < seInfo.Length; i++)
+        {
+            sePlayers.Add(gameObject.AddComponent<AudioSource>());
+            // 버튼 클릭 이벤트에 대한 리스너 등록
+            seInfo[i].button.onClick.AddListener(() => PlaySE(seInfo[i].button));
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         PlayBGM(scene.name); // 새로운 씬이 로딩될 때마다 BGM을 재생
     }
+
+
 
     private void PlayBGM(string p_name)
     {
@@ -81,6 +119,22 @@ public class SoundManager : MonoBehaviour
         if (bgmPlayer.isPlaying)
         {
             bgmPlayer.Stop();
+        }
+    }
+
+    public void PlaySE(Button button)
+    {
+        // buttonName에 해당하는 SE를 찾아서 재생
+        for (int i = 0; i < seInfo.Length; i++)
+        {
+            if (button == seInfo[i].button)
+            {
+                sePlayers[i].clip = seInfo[i].clip;
+                sePlayers[i].volume = seInfo[i].volume;
+                sePlayers[i].loop = seInfo[i].isLoop;
+                sePlayers[i].Play();
+                break;
+            }
         }
     }
 }
