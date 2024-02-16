@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public enum BTNType
 {
@@ -23,14 +24,17 @@ public class BTN : MonoBehaviour
 
     public void OnBtnClick()
     {
+        
         switch (currentType)
         {
             case BTNType.Start:
+                SoundManager.instance.PlaySE(GetComponent<Button>());
                 SceneManager.LoadScene("Stage_Selection_Scene");
                 break;
             case BTNType.End:
+                SoundManager.instance.PlaySE(GetComponent<Button>());
                 #if UNITY_EDITOR
-                    UnityEditor.EditorApplication.isPlaying = false;
+                UnityEditor.EditorApplication.isPlaying = false;
                 #else
                     Application.Quit();
                 #endif
@@ -39,7 +43,7 @@ public class BTN : MonoBehaviour
             case BTNType.File2:
             case BTNType.File3:
             case BTNType.File4:
-                Debug.Log("clicked");
+                SoundManager.instance.PlaySE(GetComponent<Button>());
                 SceneManager.LoadScene("Day_Scene");
                 break;
 
@@ -52,7 +56,7 @@ public class BTN : MonoBehaviour
                     case "Stage_Selection_Scene":
                         SceneManager.LoadScene("Title_Scene");
                         break;
-                   // case "Scene2":
+                    //case "Scene2":
                     //    SceneManager.LoadScene("ReturnScene2");
                       //  break;
                         // 다른 씬들에 대한 처리도 추가 가능
