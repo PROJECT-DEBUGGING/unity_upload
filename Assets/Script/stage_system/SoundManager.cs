@@ -9,14 +9,14 @@ public class Sound
     public float volume;
     public bool isLoop;
 }
+
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance; 
+    public static SoundManager instance;
     public AudioSource bgmPlayer = null;
-    public Sound[] bgmInfo = null; 
-
+    public Sound[] bgmInfo = null;
     private int currentBGMIndex;
-    private float defaultVolume = 1.0f; // 추가: defaultVolume 정의
+    private float defaultVolume = 1.0f;
 
     private void Awake()
     {
@@ -31,26 +31,48 @@ public class SoundManager : MonoBehaviour
         }
 
         PlayBGM(SceneManager.GetActiveScene().name);
-        
+        SceneManager.sceneLoaded += OnSceneLoaded; // 씬 로딩이 완료될 때마다 이벤트 핸들러 호출
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        PlayBGM(scene.name); // 새로운 씬이 로딩될 때마다 BGM을 재생
     }
 
     private void PlayBGM(string p_name)
     {
+        bool foundBGM = false;
+
         for (int i = 0; i < bgmInfo.Length; i++)
         {
             if (p_name == bgmInfo[i].sceneName)
             {
-                // 클립이 같은 경우 그대로 두는 거 추가
-                // if문 넣은 이유 : PlayBGM이 계속 호출되는 것만 주의하면 됨.
+                if (bgmPlayer.isPlaying && bgmPlayer.clip == bgmInfo[i].clip)
+                {
+                    // 이미 현재 BGM이 재생 중이면 아무것도 하지 않음
+                    foundBGM = true;
+                    break;
+                }
+
+                // BGM 변경
+                bgmPlayer.Stop();
                 bgmPlayer.clip = bgmInfo[i].clip;
                 bgmPlayer.volume = bgmInfo[i].volume;
-                bgmPlayer.loop = true;
-                bgmPlayer.Play(); // 이미 실행 중인 것을 계속 플레이 하는 경우 있으므로 그러면 if문 넣기
-                currentBGMIndex = i;
+                bgmPlayer.loop = bgmInfo[i].isLoop;
+                bgmPlayer.Play();
 
-                Debug.Log(bgmInfo[i].sceneName); // 이 부분을 return 전에 이동
-                return; // 이 부분이 if문 밖으로 이동
+                currentBGMIndex = i;
+                Debug.Log(bgmInfo[i].sceneName);
+
+                foundBGM = true;
+                break;
             }
+        }
+
+        if (!foundBGM && bgmPlayer.isPlaying)
+        {
+            // 일치하는 씬 BGM을 찾지 못하고 현재 BGM이 재생 중인 경우, 멈춥니다.
+            bgmPlayer.Stop();
         }
     }
 
@@ -61,11 +83,4 @@ public class SoundManager : MonoBehaviour
             bgmPlayer.Stop();
         }
     }
-
-    public void PlayAudio(string p_name, string p_type, float volume)
-    {
-        if (p_type == "BGM") PlayBGM(p_name);
-       
-    }
-    // 오디오 이름 , 클립 넣는 함수가 ㅇ없음 play bgm이 실행이 안됨. 
 }
