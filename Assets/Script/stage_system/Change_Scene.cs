@@ -68,10 +68,13 @@ public class BTN : MonoBehaviour
                     case "Stage_Selection_Scene":
                         SceneManager.LoadScene("Title_Scene");
                         break;
-                    //case "Scene2":
-                    //    SceneManager.LoadScene("ReturnScene2");
-                      //  break;
-                        // 다른 씬들에 대한 처리도 추가 가능
+                    case "Day1_Puzzle_Scene":
+                    case "Day2_Puzzle_Scene":
+                    case "Day3_Puzzle_Scene":
+                    case "Day4_Puzzle_Scene":
+                        SceneManager.LoadScene("Stage_Selection_Scene");
+                        break;
+                        
                 }
                 break;
         }
