@@ -27,7 +27,7 @@ public class EventManager : MonoBehaviour
             PlayCharacterSoundForCurrentDialogue(characterName);
         }
 
-        // onComplete을 호출하여 Yarn Spinner에게 해당 명령이 완료되었음을 알립니다.
+       
         onComplete();
     }
 

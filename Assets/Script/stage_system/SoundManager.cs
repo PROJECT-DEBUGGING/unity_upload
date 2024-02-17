@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Yarn.Unity;
 public class Sound
 {
     public AudioClip clip;
@@ -118,12 +120,24 @@ public class SoundManager : MonoBehaviour
             bgmPlayer.Stop();
         }
     }
+    public void StopSE()
+    {
+        foreach (AudioSource sePlayer in sePlayers)
+        {
+            if (sePlayer.isPlaying)
+            {
+                sePlayer.Stop();
+            }
+        }
+    }
 
     public void PlaySE(string seName)
     {
         SESound se = seInfo.Find(x => x.name == seName);
         if (se != null)
         {
+           
+
             int index = seInfo.IndexOf(se);
             if (index < sePlayers.Count)
             {
@@ -131,6 +145,8 @@ public class SoundManager : MonoBehaviour
                 sePlayers[index].volume = se.volume;
                 sePlayers[index].loop = se.isLoop;
                 sePlayers[index].Play();
+                Debug.Log("ÀÖ³ª");
+
             }
             else
             {
@@ -141,5 +157,23 @@ public class SoundManager : MonoBehaviour
         {
             Debug.LogError("SE not found with name: " + seName);
         }
+    }
+
+    [YarnCommand("StopBGM")]
+    public void Stopbmg()
+    {
+        StopBGM();
+    }
+
+    [YarnCommand("StopSound")]
+    public void StopSound()
+    {
+        StopSE();
+    }
+
+    [YarnCommand("PlaySound")]
+    public void PlaySound()
+    {
+        PlaySE("error_ef");
     }
 }
