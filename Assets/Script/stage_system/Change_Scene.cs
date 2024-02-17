@@ -35,7 +35,7 @@ public class BTN : MonoBehaviour
 
             case BTNType.End:
                 SoundManager.instance.PlaySE("quit_b");
-                Debug.Log("°ÔÀÓÁ¾·á");
+                Debug.Log("ê²Œì„ì¢…ë£Œ");
                 Application.Quit();
 
                 break;
@@ -83,17 +83,20 @@ public class BTN : MonoBehaviour
 
 
             case BTNType.Return:
-                // ÇöÀç ¾À¿¡ µû¶ó ´Ù¸¥ ¾ÀÀ¸·Î ÀÌµ¿
+                // í˜„ì¬ ì”¬ì— ë”°ë¼ ë‹¤ë¥¸ ì”¬ìœ¼ë¡œ ì´ë™
                 string currentScene = SceneManager.GetActiveScene().name;
                 switch (currentScene)
                 {
                     case "Stage_Selection_Scene":
                         SceneManager.LoadScene("Title_Scene");
                         break;
-                        //case "Scene2":
-                        //    SceneManager.LoadScene("ReturnScene2");
-                        //  break;
-                        // ´Ù¸¥ ¾Àµé¿¡ ´ëÇÑ Ã³¸®µµ Ãß°¡ °¡´É
+                    case "Day1_Puzzle_Scene":
+                    case "Day2_Puzzle_Scene":
+                    case "Day3_Puzzle_Scene":
+                    case "Day4_Puzzle_Scene":
+                        SceneManager.LoadScene("Stage_Selection_Scene");
+                        break;
+                        
                 }
                 break;
         }
@@ -103,7 +106,7 @@ public class BTN : MonoBehaviour
 
     IEnumerator WaitAndDoSomething()
     {
-        yield return new WaitForSeconds(2f); // 2ÃÊ µ¿¾È ±â´Ù¸³´Ï´Ù.
+        yield return new WaitForSeconds(2f); // 2ì´ˆ ë™ì•ˆ ê¸°ë‹¤ë¦½ë‹ˆë‹¤.
         Debug.Log("After waiting for 1 second. Now do something!");
     }
 
