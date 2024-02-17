@@ -47,7 +47,6 @@ public class GlobalController : MonoBehaviour
 
     void Awake()
     {
-        // 다른 스크립트에서 싱글톤을 참조할 수 있도록 설정
         if (instance == null)
         {
             instance = this;

@@ -94,6 +94,7 @@ public class BTN : MonoBehaviour
                     case "Day2_Puzzle_Scene":
                     case "Day3_Puzzle_Scene":
                     case "Day4_Puzzle_Scene":
+                        GlobalController.beforepuzzle = true;
                         SceneManager.LoadScene("Stage_Selection_Scene");
                         break;
                         

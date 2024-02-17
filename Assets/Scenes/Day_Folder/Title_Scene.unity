@@ -344,7 +344,7 @@ MonoBehaviour:
     isLoop: 0
     name: quit_b
   - clip: {fileID: 8300000, guid: 92cce7d58e439db41b461af45b713c2d, type: 3}
-    volume: 0.3
+    volume: 0.6
     isLoop: 0
     name: error_ef
   - clip: {fileID: 8300000, guid: 48d4e78bfaa90b34bbc9795b309e11b7, type: 3}

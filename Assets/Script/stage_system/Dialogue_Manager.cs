@@ -11,6 +11,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 60;
         // 스타트할 때 모든 이미지를 초기화
         foreach (Image uiImage in uiImages)
         {
@@ -31,7 +32,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     IEnumerator FadeInImage(Image targetImage)
     {
-        float duration = 0.7f; // 페이드 인하는 데 걸리는 시간
+        float duration = 1.0f; // 페이드 인하는 데 걸리는 시간
         float startTime = Time.time;
 
         while (Time.time - startTime < duration)
@@ -53,7 +54,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     IEnumerator FadeOutImage(Image targetImage)
     {
-        float duration = 0.7f; // 페이드 아웃하는 데 걸리는 시간
+        float duration = 1.0f; // 페이드 아웃하는 데 걸리는 시간
         float startTime = Time.time;
 
         while (Time.time - startTime < duration)
@@ -124,17 +125,12 @@ public class Dialogue_Manager : MonoBehaviour
         GlobalController.beforepuzzle = value;
     }
 
-    [YarnCommand("PlaySound")]
-    public void PlaySound(string str)
-    {
-        SoundManager.instance.PlaySE("error_ef");
-    }
 
     [YarnCommand("BeBlack")]
     public void becomeblack()
     {
         fadeEffect.FadeInImage();
     }
-  
+
 }
         

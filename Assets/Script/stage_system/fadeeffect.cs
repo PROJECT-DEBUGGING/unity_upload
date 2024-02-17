@@ -14,6 +14,7 @@ public class fadeeffect : MonoBehaviour
         SetImageTransparent();
         image.raycastTarget = false;
         StartCoroutine(FadeOutImage());
+        Application.targetFrameRate = 60;
     }
 
     void Update()
@@ -35,7 +36,7 @@ public class fadeeffect : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
-        float duration = 2.0f;
+        float duration = 1.0f;
         float startTime = Time.time;
 
         while (Time.time - startTime < duration)
@@ -51,7 +52,7 @@ public class fadeeffect : MonoBehaviour
 
     IEnumerator FadeOutImage()
     {
-        float duration = 2.0f;
+        float duration = 1.0f;
         float startTime = Time.time;
 
         while (Time.time - startTime < duration)
