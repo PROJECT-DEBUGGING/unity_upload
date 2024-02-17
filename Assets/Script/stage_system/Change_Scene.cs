@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -20,43 +21,64 @@ public enum BTNType
 public class BTN : MonoBehaviour
 {
     public BTNType currentType;
-   
-
+    public fadeeffect fadeEffect;
     public void OnBtnClick()
     {
         
+ 
         switch (currentType)
         {
             case BTNType.Start:
-                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SoundManager.instance.PlaySE("start_b");
                 SceneManager.LoadScene("Stage_Selection_Scene");
                 break;
 
             case BTNType.End:
-                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SoundManager.instance.PlaySE("quit_b");
                 Debug.Log("게임종료");
                 Application.Quit();
-           
+
                 break;
             case BTNType.File1:
                 GlobalController.ChangeSelectedNum(0);
-                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SoundManager.instance.PlaySE("file_b");
+
+                fadeEffect.FadeInImage();
+                StartCoroutine(WaitAndDoSomething());
+
                 SceneManager.LoadScene("Day_Scene");
+
                 break;
             case BTNType.File2:
                 GlobalController.ChangeSelectedNum(1);
-                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SoundManager.instance.PlaySE("file_b");
+
+                fadeEffect.FadeInImage();
+                StartCoroutine(WaitAndDoSomething());
+
+
                 SceneManager.LoadScene("Day_Scene");
+
                 break;
             case BTNType.File3:
                 GlobalController.ChangeSelectedNum(2);
-                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SoundManager.instance.PlaySE("file_b");
+
+                fadeEffect.FadeInImage();
+                StartCoroutine(WaitAndDoSomething());
+
                 SceneManager.LoadScene("Day_Scene");
+
                 break;
             case BTNType.File4:
                 GlobalController.ChangeSelectedNum(3);
-                SoundManager.instance.PlaySE(GetComponent<Button>());
+                SoundManager.instance.PlaySE("file_b");
+
+                fadeEffect.FadeInImage();
+                StartCoroutine(WaitAndDoSomething());
+
                 SceneManager.LoadScene("Day_Scene");
+
                 break;
 
 
@@ -68,17 +90,22 @@ public class BTN : MonoBehaviour
                     case "Stage_Selection_Scene":
                         SceneManager.LoadScene("Title_Scene");
                         break;
-                    //case "Scene2":
-                    //    SceneManager.LoadScene("ReturnScene2");
-                      //  break;
+                        //case "Scene2":
+                        //    SceneManager.LoadScene("ReturnScene2");
+                        //  break;
                         // 다른 씬들에 대한 처리도 추가 가능
                 }
                 break;
         }
 
+        
     }
 
-  
+    IEnumerator WaitAndDoSomething()
+    {
+        yield return new WaitForSeconds(2f); // 2초 동안 기다립니다.
+        Debug.Log("After waiting for 1 second. Now do something!");
+    }
 
 
 }
