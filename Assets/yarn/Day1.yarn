@@ -32,7 +32,7 @@ tags:
 title: Day1_Start
 tags:
 ---
-<<wait 0.1>>
+<<wait 1>>
 나: …드디어 사무실 서버를 구축했다.
 나: ip 추적기도 막아뒀고, 보안도 완벽해. 이제 본격적으로 사업을 시작할 수 있어.
 나: 아바타 버그 해결은 레드 오션이지만 수요가 많아서 벌 수 있을 거야.
@@ -47,13 +47,14 @@ tags:
 나: (얼른 고쳐드려야겠어, 코드를 열어보자.)
 <<ImageOff DialogueRunner day1_error_npc>>
 <<ChangeState DialogueRunner false>>
+<<BeBlack DialogueRunner>>
+<<wait 2>>
 <<ChangeScene DialogueRunner Day1_Puzzle_Scene>>
 ===
 title: Day1_Clear
 tags:
 ---
 <<StartFadeInNPCImage DialogueRunner day1_npc>>
-<<wait 1>>
 노아: 그러니까 여기 옷이고 대사고 전부…!
 노아: …아, 이제 들리는 거야?
 나: 네, 이제 괜찮을 거예요.
@@ -67,11 +68,14 @@ tags:
 나: 앞으로 일감이 많이 들어오겠는걸
 나: 그렇지만 다수를 대상으로 한 버그라니… 그냥 질 나쁜 장난이면 좋겠네.
 <<ChangeState DialogueRunner true>>
+<<BeBlack DialogueRunner>>
+<<wait 2>>
 <<ChangeScene DialogueRunner Stage_Selection_Scene>>
 ===
 title: Day2_Start
 tags:
 ---
+<<wait 1>>
 나: 캔디 클럽… 처음 들어봤는데.
 나: 그래도 아직 한가한 걸 보니 큰일은 아니었나봐.
 나: 다음 손님을 받아보자, 오늘도 돈을 벌어야지.
@@ -83,12 +87,14 @@ tags:
 나: (…코드를 열어서 버그를 해결하자.)
 <<ImageOff DialogueRunner day2_error_npc>>
 <<ChangeState DialogueRunner false>>
+<<BeBlack DialogueRunner>>
+<<wait 2>>
 <<ChangeScene DialogueRunner Day2_Puzzle_Scene>>
 ===
 title: Day2_Clear
 tags:
 ---
-<<ImageOn DialogueRunner day2_npc>>
+<<StartFadeInNPCImage DialogueRunner day2_npc>>
 삑뺚뾲쀾뼊: …
 삑뺚뾲쀾뼊: 어, 해결됐어요?
 나: 네, 해결됐습니다.
@@ -106,11 +112,14 @@ tags:
 삑삑: 네진짜감사합니다좋은하루되시고번창하세요!!
 <<StartFadeOutNPCImage DialogueRunner day2_npc>>
 <<ChangeState DialogueRunner true>>
+<<BeBlack DialogueRunner>>
+<<wait 2>>
 <<ChangeScene DialogueRunner Stage_Selection_Scene>>
 ===
 title: Day3_Start
 tags:
 ---
+<<wait 1>>
 나: 캔디 클럽…
 나: 어젯밤 밤새 뒤져봤더니, 오메가 채널에서 찾을 수 있었어.
 나: 거긴 24개 채널 중 마지막 채널이라 관리도 안 되는 곳인데…
@@ -126,12 +135,14 @@ tags:
 나: (어서 빨리 해결하자.)
 <<ImageOff DialogueRunner vday3_error_npc>>
 <<ChangeState DialogueRunner false>>
+<<BeBlack DialogueRunner>>
+<<wait 2>>
 <<ChangeScene DialogueRunner Day3_Puzzle_Scene>>
 ===
 title: Day3_Clear
 tags:
 ---
-<<ImageOn DialogueRunner day3_npc>>
+<<StartFadeInNPCImage DialogueRunner day3_npc>>
 시카: ……………
 나: …손님?
 시카: 아!! 네!! 죄송해요 뭐라고 하셨죠?
@@ -152,11 +163,14 @@ tags:
 나: 그럼 혹시 나도…
 나: …망했네.
 <<ChangeState DialogueRunner true>>
+<<BeBlack DialogueRunner>>
+<<wait 1>>
 <<ChangeScene DialogueRunner Stage_Selection_Scene>>
 ===
 title: Day4_Start
 tags:
 ---
+<<wait 1>>
 나: 빨리… 빨리…
 나: 방문 기록도 삭제했고, 업무 프로그램도 삭제했고.
 나: 관리 안 되는 채널에서 다수를 대상으로 전염성 있는 버그를 퍼뜨리다니…
@@ -166,20 +180,24 @@ tags:
 SYSTEM: \[SYSTEM: 모든 데이터를 삭제합니다.\]
 SYSTEM: \[삭제 중…\]
 SYSTEM: \[….\]
-SYSTME: \[오류가 발생했습니다. 데이터를 삭제할 수 없습니다.\]
+SYSTEM: \[오류가 발생했습니다. 데이터를 삭제할 수 없습니다.\]
 나: 뭐???
 <<StartFadeInNPCImage DialogueRunner day4_error>>
 나: 악!!!!!!
 나: 아 제발 진짜 나한테 왜 이러는 거야!!
 나: 코드… 빨리 열어서 고쳐야해!!
 <<ChangeState DialogueRunner false>>
+<<BeBlack DialogueRunner>>
+<<wait 2>>
 <<ChangeScene DialogueRunner Day4_Puzzle_Scene>>
 ===
 title: Day4_Clear
 tags:
 ---
 <<ImageOff DialogueRunner day4_error>>
-SYSTEM: [서버 관리자가 퇴장했습니다. 서버를 삭제합니다.]
+SYSTEM: \[서버 관리자가 퇴장했습니다. 서버를 삭제합니다.\]
 <<ChangeState DialogueRunner true>>
+<<BeBlack DialogueRunner>>
+<<wait 2>>
 <<ChangeScene DialogueRunner Stage_Selection_Scene>>
 ===

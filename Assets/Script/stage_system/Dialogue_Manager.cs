@@ -3,12 +3,11 @@ using UnityEngine.UI;
 using Yarn.Unity;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Security.Cryptography;
 
 public class Dialogue_Manager : MonoBehaviour
 {
     public Image[] uiImages;
-
+    public fadeeffect fadeEffect;
 
     void Start()
     {
@@ -32,7 +31,7 @@ public class Dialogue_Manager : MonoBehaviour
 
     IEnumerator FadeInImage(Image targetImage)
     {
-        float duration = 1.0f; // 페이드 인하는 데 걸리는 시간
+        float duration = 0.7f; // 페이드 인하는 데 걸리는 시간
         float startTime = Time.time;
 
         while (Time.time - startTime < duration)
@@ -49,12 +48,12 @@ public class Dialogue_Manager : MonoBehaviour
     [YarnCommand("StartFadeOutNPCImage")]
     public void StartFadeOutNPCImage(Image ImageName)
     {
-         StartCoroutine(FadeOutImage(ImageName));
+        StartCoroutine(FadeOutImage(ImageName));
     }
 
     IEnumerator FadeOutImage(Image targetImage)
     {
-        float duration = 1.0f; // 페이드 아웃하는 데 걸리는 시간
+        float duration = 0.7f; // 페이드 아웃하는 데 걸리는 시간
         float startTime = Time.time;
 
         while (Time.time - startTime < duration)
@@ -76,7 +75,7 @@ public class Dialogue_Manager : MonoBehaviour
     IEnumerator OFFImage(Image targetImage)
     {
         Color newColor = targetImage.color;
-        newColor.a = 0f; 
+        newColor.a = 0f;
         targetImage.raycastTarget = false;
         targetImage.color = newColor;
 
@@ -111,7 +110,7 @@ public class Dialogue_Manager : MonoBehaviour
         return GlobalController.SelectedNum;
 
     }
-    
+
 
     [YarnFunction("CheckBeforePuzzle")]
     public static bool Checkbfpuzzle()
@@ -124,4 +123,18 @@ public class Dialogue_Manager : MonoBehaviour
     {
         GlobalController.beforepuzzle = value;
     }
+
+    [YarnCommand("PlaySound")]
+    public void PlaySound(string str)
+    {
+        SoundManager.instance.PlaySE("error_ef");
+    }
+
+    [YarnCommand("BeBlack")]
+    public void becomeblack()
+    {
+        fadeEffect.FadeInImage();
+    }
+  
 }
+        
