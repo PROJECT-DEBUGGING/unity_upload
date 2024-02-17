@@ -342,6 +342,10 @@ MonoBehaviour:
     volume: 0.5
     isLoop: 0
     button: {fileID: 2039922026}
+  - clip: {fileID: 8300000, guid: c5ff5419700a09648bc7568df35a2565, type: 3}
+    volume: 0.5
+    isLoop: 0
+    button: {fileID: 2039922026}
   sePlayers: []
 --- !u!4 &766044194
 Transform:

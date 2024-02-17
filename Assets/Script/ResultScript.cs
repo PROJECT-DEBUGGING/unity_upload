@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResultScript : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class ResultScript : MonoBehaviour
     {
         if (result == 1)//성공
         {
+            GlobalController.Instance.SetFileClearStatus(PuzzleNo, true);
+            Debug.Log("수정" + PuzzleNo);
+
             CantDebug = false;
             ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
             GetTime = NowArrow.MoveTime;
@@ -25,10 +29,12 @@ public class ResultScript : MonoBehaviour
             Invoke("CanDebug", GetTime);
             result = 0;
 
-            GlobalController.Instance.SetFileClearStatus(PuzzleNo, true);
         }
         else if (result == 2)//실패
         {
+
+            GlobalController.Instance.SetFileClearStatus(PuzzleNo, false);
+
             CantDebug = false;
             ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
             GetTime = NowArrow.MoveTime;
@@ -41,7 +47,6 @@ public class ResultScript : MonoBehaviour
             Invoke("CanDebug", GetTime);
             result = 0;
 
-            GlobalController.Instance.SetFileClearStatus(PuzzleNo, false);
         }
         GetTime = 0;
         ArrowScript arr = GameObject.FindObjectOfType<ArrowScript>();
@@ -66,6 +71,7 @@ public class ResultScript : MonoBehaviour
     {
         Transform ClearScreen = transform.Find("clear_0");
         ClearScreen.gameObject.SetActive(false);
+        SceneManager.LoadScene("Day_Scene");
     }
     public void FailedPuzzle()
     {
