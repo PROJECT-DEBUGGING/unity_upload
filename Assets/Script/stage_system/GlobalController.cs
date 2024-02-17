@@ -30,8 +30,16 @@ public class GlobalController : MonoBehaviour
                     // 없으면 새로 생성
                     GameObject singletonObject = new GameObject("NewBehaviourScriptSingleton");
                     instance = singletonObject.AddComponent<GlobalController>();
+                    for (int i = 0; i < GlobalController.isClear.Length; i++)
+                    {
+                        GlobalController.isClear[i] = false;
+                    }
                 }
             }
+
+            
+            
+
 
             return instance;
         }
@@ -54,7 +62,7 @@ public class GlobalController : MonoBehaviour
 
     void Start()
     {
-        // Start에서 초기화
+       
         
     }
 
@@ -70,10 +78,12 @@ public class GlobalController : MonoBehaviour
         if (fileIndex >= 0 && fileIndex < isClear.Length)
         {
             isClear[fileIndex] = isFileCleared;
+            //Debug.Log(fileIndex + "번 파일");
+            //Debug.Log(isFileCleared + " 여부");
         }
         else
         {
-            Debug.LogError("Invalid fileIndex: " + fileIndex);
+           Debug.LogError("Invalid fileIndex: " + fileIndex);
         }
     }
 

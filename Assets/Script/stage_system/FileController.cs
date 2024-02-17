@@ -13,7 +13,6 @@ public class FileController : MonoBehaviour
         {
             CanvasGroup canvasGroup = puzzles[i].GetComponent<CanvasGroup>();
 
-            GlobalController.isClear[i] = false;
             canvasGroup.alpha = 0f;
             canvasGroup.interactable = false;
         }
@@ -24,7 +23,7 @@ public class FileController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
@@ -34,6 +33,7 @@ public class FileController : MonoBehaviour
         for (int i = 0; i < puzzles.Length; i++)
         {
             Debug.Log(i);
+            Debug.Log(GlobalController.isClear[i]);
             CanvasGroup canvasGroup = puzzles[i].GetComponent<CanvasGroup>();
             if (canvasGroup == null)
                 canvasGroup = puzzles[i].AddComponent<CanvasGroup>();
@@ -41,6 +41,12 @@ public class FileController : MonoBehaviour
             // 현재까지 클리어한 파일의 개수만큼 또는 isClear 배열이 true인 경우에만 활성화
             canvasGroup.alpha = (GlobalController.isClear[i]) ? 1f : 0f;
             canvasGroup.interactable = canvasGroup.blocksRaycasts = GlobalController.isClear[i];
+
+            for(int ii =0; ii < 4; ii++)
+            {
+                Debug.Log(GlobalController.isClear[ii] + "확인 " + ii +"번");
+            }
+
 
             // 추가: alpha가 0f이고 그 전 파일이 클리어된 경우에 대한 처리
             if (canvasGroup.alpha == 0f)
