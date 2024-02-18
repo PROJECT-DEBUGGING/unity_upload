@@ -45,9 +45,9 @@ public class fadeeffect : MonoBehaviour
             Color newColor = image.color;
             newColor.a = alpha;
             image.color = newColor;
-
             yield return null;
         }
+        
     }
 
     IEnumerator FadeOutImage()
@@ -61,7 +61,6 @@ public class fadeeffect : MonoBehaviour
             Color newColor = image.color;
             newColor.a = alpha;
             image.color = newColor;
-
             yield return null;
         }
     }

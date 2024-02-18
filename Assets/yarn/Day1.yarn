@@ -67,7 +67,7 @@ tags:
 노아: 네, 저랑 비슷할 거에요.
 나: 알겠습니다. 의뢰비는 제 프로필에 적힌 계좌로 보내주세요.
 <<StartFadeOutNPCImage DialogueRunner day1_npc>>
-나: 앞으로 일감이 많이 들어오겠는걸
+나: 앞으로 일감이 많이 들어오겠는걸.
 나: 그렇지만 다수를 대상으로 한 버그라니… 그냥 질 나쁜 장난이면 좋겠네.
 <<ChangeState DialogueRunner true>>
 <<BeBlack DialogueRunner>>

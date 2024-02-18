@@ -1885,7 +1885,7 @@ MonoBehaviour:
   onPauseEnded:
     m_PersistentCalls:
       m_Calls: []
-  typewriterEffectSpeed: 30
+  typewriterEffectSpeed: 26
   continueButton: {fileID: 1992776705}
   holdTime: 1.5
   autoAdvance: 0

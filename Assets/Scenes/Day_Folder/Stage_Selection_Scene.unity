@@ -608,6 +608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentType: 3
   fadeEffect: {fileID: 1176207696}
+  globalController: {fileID: 0}
 --- !u!225 &631655925
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -979,6 +980,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentType: 5
   fadeEffect: {fileID: 1176207696}
+  globalController: {fileID: 0}
 --- !u!1 &721894275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentType: 6
   fadeEffect: {fileID: 1176207696}
+  globalController: {fileID: 0}
 --- !u!114 &776918795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,6 +1535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentType: 2
   fadeEffect: {fileID: 0}
+  globalController: {fileID: 0}
 --- !u!1 &1007830661
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,50 +1795,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1176207694}
   m_CullTransparentMesh: 1
---- !u!1 &1187072471
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1187072473}
-  - component: {fileID: 1187072472}
-  m_Layer: 0
-  m_Name: Global_controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1187072472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187072471}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6acb117db9955274c87b456d5db17ad5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1187072473
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1187072471}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 960, y: 540, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1378328314
 GameObject:
   m_ObjectHideFlags: 0
@@ -2076,6 +2036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentType: 4
   fadeEffect: {fileID: 1176207696}
+  globalController: {fileID: 0}
 --- !u!114 &2087772134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2139,5 +2100,4 @@ SceneRoots:
   - {fileID: 1011259801}
   - {fileID: 322651484}
   - {fileID: 721894279}
-  - {fileID: 1187072473}
   - {fileID: 701806361}

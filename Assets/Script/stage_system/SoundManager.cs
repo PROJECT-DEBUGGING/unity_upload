@@ -145,7 +145,6 @@ public class SoundManager : MonoBehaviour
                 sePlayers[index].volume = se.volume;
                 sePlayers[index].loop = se.isLoop;
                 sePlayers[index].Play();
-                Debug.Log("ÀÖ³ª");
 
             }
             else
