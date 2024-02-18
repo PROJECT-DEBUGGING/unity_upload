@@ -71,6 +71,7 @@ public class GlobalController : MonoBehaviour
 
     void Start()
     {
+        //ResetData();
         // 저장된 파일이 있다면 로드
         if (File.Exists(GetFullPath()))
         {
@@ -139,5 +140,20 @@ public class GlobalController : MonoBehaviour
     private string GetFullPath()
     {
         return Path.Combine(path, filename);
+    }
+
+    private void ResetData()
+    {
+        // 저장된 데이터 파일이 존재하는지 확인
+        if (File.Exists(GetFullPath()))
+        {
+            // 파일이 존재하면 삭제
+            File.Delete(GetFullPath());
+            Debug.Log("Saved data deleted.");
+        }
+        else
+{
+    Debug.Log("No saved data found.");
+}
     }
 }
