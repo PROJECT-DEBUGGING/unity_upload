@@ -114,11 +114,11 @@ tags:
 나: 어제 비슷한 버그를 해결해서요. 그 채널과 연관이 있는 것 같습니다.
 나: 주변에 비슷한 버그를 발견하셨다면 제 사무실로 연락주세요.
 삑삑: 네진짜감사합니다좋은하루되시고번창하세요!!
+<<StartFadeOutNPCImage DialogueRunner day2_npc>>
 나: 와 진짜 기빨린다…
 나: 살면서 저렇게 말이 많은 사람 처음 봤어.
 나: 다른 사무실도 비슷한 버그를 봤을까…
 나: 한번 조사해봐야겠어.
-<<StartFadeOutNPCImage DialogueRunner day2_npc>>
 <<ChangeState DialogueRunner true>>
 <<BeBlack DialogueRunner>>
 <<wait 2>>
@@ -197,7 +197,7 @@ SYSTEM: \[오류가 발생했습니다. 데이터를 삭제할 수 없습니다.
 <<StartFadeInNPCImage DialogueRunner day4_error>>
 나: 악!!!!!!
 나: 아 제발 진짜 나한테 왜 이러는 거야!!
-나: 코드… 빨리 열어서 고쳐야해!!
+나: 코드… 빨리 열어서 고쳐야 해!!
 <<ChangeState DialogueRunner false>>
 <<BeBlack DialogueRunner>>
 <<wait 2>>

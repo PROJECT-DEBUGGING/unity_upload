@@ -28,7 +28,6 @@ public class GlobalController : MonoBehaviour
     string filename = "save";
 
     // 싱글톤 인스턴스 가져오기
-    [System.Obsolete]
     public static GlobalController Instance
     {
         get
@@ -61,7 +60,14 @@ public class GlobalController : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            path = Application.persistentDataPath + "/";
+            // 빌드된 런타임에서는 특정 폴더를 사용
+            path = Path.Combine(Path.GetDirectoryName(Application.dataPath), "MyGameSaves");
+
+            // 디렉토리가 없으면 생성
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
         }
         else
         {
@@ -115,13 +121,9 @@ public class GlobalController : MonoBehaviour
 
     public void SaveData()
     {
-        // SaveData 클래스의 인스턴스 생성
         SaveData saveData = new SaveData(isClear);
-
-        // 직렬화된 데이터를 얻어올 수 있음
         string serializedData = JsonUtility.ToJson(saveData);
 
-        // 이후에 serializedData를 저장
         File.WriteAllText(GetFullPath(), serializedData);
     }
 
@@ -152,8 +154,8 @@ public class GlobalController : MonoBehaviour
             Debug.Log("Saved data deleted.");
         }
         else
-{
-    Debug.Log("No saved data found.");
-}
+        {
+            Debug.Log("No saved data found.");
+        }
     }
 }
