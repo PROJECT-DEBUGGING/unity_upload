@@ -3,15 +3,15 @@ using UnityEngine.UI;
 using Yarn.Unity;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Security.Cryptography;
 
 public class Dialogue_Manager : MonoBehaviour
 {
     public Image[] uiImages;
-
+    public fadeeffect fadeEffect;
 
     void Start()
     {
+        Application.targetFrameRate = 60;
         // 스타트할 때 모든 이미지를 초기화
         foreach (Image uiImage in uiImages)
         {
@@ -43,13 +43,21 @@ public class Dialogue_Manager : MonoBehaviour
             targetImage.color = newColor;
 
             yield return null;
+
         }
+        float ap = 1.0f;
+        Color nc = targetImage.color;
+        nc.a = ap;
+        targetImage.color = nc;
+        Debug.Log("투명도 체크");
+        yield return null;
+
     }
 
     [YarnCommand("StartFadeOutNPCImage")]
     public void StartFadeOutNPCImage(Image ImageName)
     {
-         StartCoroutine(FadeOutImage(ImageName));
+        StartCoroutine(FadeOutImage(ImageName));
     }
 
     IEnumerator FadeOutImage(Image targetImage)
@@ -76,7 +84,7 @@ public class Dialogue_Manager : MonoBehaviour
     IEnumerator OFFImage(Image targetImage)
     {
         Color newColor = targetImage.color;
-        newColor.a = 0f; 
+        newColor.a = 0f;
         targetImage.raycastTarget = false;
         targetImage.color = newColor;
 
@@ -90,9 +98,12 @@ public class Dialogue_Manager : MonoBehaviour
     }
     IEnumerator ONImage(Image targetImage)
     {
-        Color newColor = targetImage.color;
-        newColor.a = 1f;
-        targetImage.color = newColor;
+        
+        float ap = 1.0f;
+        Color nc = targetImage.color;
+        nc.a = ap;
+        targetImage.color = nc;
+        //Debug.Log("ap는 " + ap);
 
         yield return null;
     }
@@ -111,7 +122,7 @@ public class Dialogue_Manager : MonoBehaviour
         return GlobalController.SelectedNum;
 
     }
-    
+
 
     [YarnFunction("CheckBeforePuzzle")]
     public static bool Checkbfpuzzle()
@@ -124,4 +135,13 @@ public class Dialogue_Manager : MonoBehaviour
     {
         GlobalController.beforepuzzle = value;
     }
+
+
+    [YarnCommand("BeBlack")]
+    public void becomeblack()
+    {
+        fadeEffect.FadeInImage();
+    }
+
 }
+        

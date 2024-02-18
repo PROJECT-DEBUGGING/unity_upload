@@ -1,7 +1,9 @@
 using System.Collections.Generic;
+using System.Xml.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Yarn.Unity;
 public class Sound
 {
     public AudioClip clip;
@@ -25,10 +27,10 @@ public class BgmSound : Sound
 [System.Serializable]
 public class SESound : Sound
 {
-    public Button button; // SE에는 Button이 필요
-    public SESound(Button button, AudioClip clip, float volume, bool isLoop)
+    public string name; // SE에는 Button이 필요
+    public SESound(string name, AudioClip clip, float volume, bool isLoop)
     {
-        this.button = button;
+        this.name = name;
         this.clip = clip;
         this.volume = volume;
         this.isLoop = isLoop;
@@ -39,8 +41,8 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
     public BgmSound[] bgmInfo = null;
-    public SESound[] seInfo = null;
-    public List<AudioSource> sePlayers;
+    public List<AudioSource> sePlayers = new List<AudioSource>();
+    public List<SESound> seInfo = new List<SESound>();
 
     private AudioSource bgmPlayer;
     private int currentBGMIndex;
@@ -61,12 +63,9 @@ public class SoundManager : MonoBehaviour
 
         PlayBGM(SceneManager.GetActiveScene().name);
         SceneManager.sceneLoaded += OnSceneLoaded; // 씬 로딩이 완료될 때마다 이벤트 핸들러 호출
-        sePlayers = new List<AudioSource>();
-        for (int i = 0; i < seInfo.Length; i++)
+        foreach (SESound sound in seInfo)
         {
             sePlayers.Add(gameObject.AddComponent<AudioSource>());
-            // 버튼 클릭 이벤트에 대한 리스너 등록
-            seInfo[i].button.onClick.AddListener(() => PlaySE(seInfo[i].button));
         }
     }
 
@@ -121,23 +120,59 @@ public class SoundManager : MonoBehaviour
             bgmPlayer.Stop();
         }
     }
-
-    public void PlaySE(Button button)
+    public void StopSE()
     {
-        // buttonName에 해당하는 SE를 찾아서 재생
-        for (int i = 0; i < seInfo.Length; i++)
+        foreach (AudioSource sePlayer in sePlayers)
         {
-            if (i < sePlayers.Count)
+            if (sePlayer.isPlaying)
             {
-                sePlayers[i].clip = seInfo[i].clip;
-                sePlayers[i].volume = seInfo[i].volume;
-                sePlayers[i].loop = seInfo[i].isLoop;
-                sePlayers[i].Play(); 
+                sePlayer.Stop();
+            }
+        }
+    }
+
+    public void PlaySE(string seName)
+    {
+        SESound se = seInfo.Find(x => x.name == seName);
+        if (se != null)
+        {
+           
+
+            int index = seInfo.IndexOf(se);
+            if (index < sePlayers.Count)
+            {
+                sePlayers[index].clip = se.clip;
+                sePlayers[index].volume = se.volume;
+                sePlayers[index].loop = se.isLoop;
+                sePlayers[index].Play();
+
             }
             else
             {
                 Debug.LogError("sePlayers list is not properly initialized. Ensure that the sizes of seInfo and sePlayers match.");
             }
         }
+        else
+        {
+            Debug.LogError("SE not found with name: " + seName);
+        }
+    }
+
+    [YarnCommand("StopBGM")]
+    public void Stopbmg()
+    {
+        StopBGM();
+    }
+
+    [YarnCommand("StopSound")]
+    public void StopSound()
+    {
+        StopSE();
+    }
+
+    [YarnCommand("PlaySound")]
+    public void PlaySound()
+    {
+        PlaySE("error_ef");
     }
 }

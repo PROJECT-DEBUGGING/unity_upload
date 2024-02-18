@@ -1,6 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System;
+
+[Serializable]
+public class SaveData
+{
+    public bool[] isClear;
+
+    public SaveData(bool[] isClear)
+    {
+        this.isClear = isClear;
+    }
+}
 
 public class GlobalController : MonoBehaviour
 {
@@ -11,8 +24,8 @@ public class GlobalController : MonoBehaviour
     public static bool beforepuzzle = true;
     public static int SelectedNum = 0;
 
-    // 파일 게임 오브젝트 저장 배열
-    
+    string path;
+    string filename = "save";
 
     // 싱글톤 인스턴스 가져오기
     [System.Obsolete]
@@ -37,53 +50,56 @@ public class GlobalController : MonoBehaviour
                 }
             }
 
-            
-            
-
-
             return instance;
         }
     }
 
     void Awake()
     {
-        // 다른 스크립트에서 싱글톤을 참조할 수 있도록 설정
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+
+            path = Application.persistentDataPath + "/";
         }
         else
         {
             Destroy(gameObject);
         }
-        
     }
 
     void Start()
     {
-       
-        
+        //ResetData();
+        // 저장된 파일이 있다면 로드
+        if (File.Exists(GetFullPath()))
+        {
+            LoadData();
+        }
+        else
+        {
+            // 파일이 없다면 초기 데이터를 저장
+            SaveData();
+        }
     }
 
     void Update()
     {
-
+        // 추가적인 업데이트 로직이 필요하다면 작성
     }
 
-  
     // 파일의 클리어 여부 설정
     public void SetFileClearStatus(int fileIndex, bool isFileCleared)
     {
         if (fileIndex >= 0 && fileIndex < isClear.Length)
         {
             isClear[fileIndex] = isFileCleared;
-            //Debug.Log(fileIndex + "번 파일");
-            //Debug.Log(isFileCleared + " 여부");
+            SaveData(); // 변경된 데이터를 저장
         }
         else
         {
-           Debug.LogError("Invalid fileIndex: " + fileIndex);
+            Debug.LogError("Invalid fileIndex: " + fileIndex);
         }
     }
 
@@ -97,4 +113,47 @@ public class GlobalController : MonoBehaviour
         SelectedNum = num;
     }
 
+    public void SaveData()
+    {
+        // SaveData 클래스의 인스턴스 생성
+        SaveData saveData = new SaveData(isClear);
+
+        // 직렬화된 데이터를 얻어올 수 있음
+        string serializedData = JsonUtility.ToJson(saveData);
+
+        // 이후에 serializedData를 저장
+        File.WriteAllText(GetFullPath(), serializedData);
+    }
+
+    public void LoadData()
+    {
+        // 로드할 데이터를 읽어옴
+        string serializedData = File.ReadAllText(GetFullPath());
+
+        // 직렬화된 데이터를 다시 SaveData 클래스의 인스턴스로 변환
+        SaveData saveData = JsonUtility.FromJson<SaveData>(serializedData);
+
+        // isClear 등의 데이터를 복원
+        isClear = saveData.isClear;
+    }
+
+    private string GetFullPath()
+    {
+        return Path.Combine(path, filename);
+    }
+
+    private void ResetData()
+    {
+        // 저장된 데이터 파일이 존재하는지 확인
+        if (File.Exists(GetFullPath()))
+        {
+            // 파일이 존재하면 삭제
+            File.Delete(GetFullPath());
+            Debug.Log("Saved data deleted.");
+        }
+        else
+{
+    Debug.Log("No saved data found.");
+}
+    }
 }

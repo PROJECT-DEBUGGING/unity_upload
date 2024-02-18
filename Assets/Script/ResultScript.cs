@@ -6,10 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class ResultScript : MonoBehaviour
 {
+    void Start()
+    {
+        globalController = GlobalController.Instance;
+    }
+
     public int PuzzleNo;
     public int result = 0;
     public float GetTime;
     public Boolean CantDebug = true;
+    public GlobalController globalController;
+
     void Update()
     {
         if (result == 1)//성공
@@ -29,12 +36,11 @@ public class ResultScript : MonoBehaviour
             Invoke("CanDebug", GetTime);
             result = 0;
 
+            globalController.SaveData();
+
         }
         else if (result == 2)//실패
         {
-
-            GlobalController.Instance.SetFileClearStatus(PuzzleNo, false);
-
             CantDebug = false;
             ArrowScript NowArrow = GameObject.FindObjectOfType<ArrowScript>();
             GetTime = NowArrow.MoveTime;
