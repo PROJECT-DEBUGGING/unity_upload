@@ -43,7 +43,15 @@ public class Dialogue_Manager : MonoBehaviour
             targetImage.color = newColor;
 
             yield return null;
+
         }
+        float ap = 1.0f;
+        Color nc = targetImage.color;
+        nc.a = ap;
+        targetImage.color = nc;
+        Debug.Log("투명도 체크");
+        yield return null;
+
     }
 
     [YarnCommand("StartFadeOutNPCImage")]
@@ -90,9 +98,12 @@ public class Dialogue_Manager : MonoBehaviour
     }
     IEnumerator ONImage(Image targetImage)
     {
-        Color newColor = targetImage.color;
-        newColor.a = 1f;
-        targetImage.color = newColor;
+        
+        float ap = 1.0f;
+        Color nc = targetImage.color;
+        nc.a = ap;
+        targetImage.color = nc;
+        //Debug.Log("ap는 " + ap);
 
         yield return null;
     }

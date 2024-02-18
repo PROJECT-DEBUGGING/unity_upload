@@ -22,20 +22,29 @@ public class BTN : MonoBehaviour
 {
     public BTNType currentType;
     public fadeeffect fadeEffect;
+    public GlobalController globalController;
+
+    void Start()
+    {
+        globalController = GlobalController.Instance;
+    }
+
     public void OnBtnClick()
     {
-        
+           
  
         switch (currentType)
         {
             case BTNType.Start:
                 SoundManager.instance.PlaySE("start_b");
+                globalController.LoadData();
                 SceneManager.LoadScene("Stage_Selection_Scene");
                 break;
 
             case BTNType.End:
                 SoundManager.instance.PlaySE("quit_b");
                 Debug.Log("게임종료");
+                globalController.SaveData();
                 Application.Quit();
 
                 break;
@@ -107,8 +116,7 @@ public class BTN : MonoBehaviour
 
     IEnumerator WaitAndDoSomething()
     {
-        yield return new WaitForSeconds(2f); // 2초 동안 기다립니다.
-        Debug.Log("After waiting for 1 second. Now do something!");
+        yield return new WaitForSeconds(2f); 
     }
 
 
